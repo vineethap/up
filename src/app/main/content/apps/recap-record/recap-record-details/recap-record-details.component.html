@@ -1,0 +1,105 @@
+<div id="ngx-datatable" class="page-layout simple fullwidth" fusePerfectScrollbar>
+  <div class="header md-accent-bg p-24 h-160" fxLayout="row" fxLayoutAlign="space-between">
+    <div fxLayout="column" fxLayoutAlign="center start">
+      <div class="h2 mt-16">Recap Record details</div>
+    </div>
+  </div>
+  <!-- / HEADER -->
+  <!-- CONTENT -->
+
+  <div class="content p-24">
+                <div class="card-preview">
+
+                    <div class="fuse-card">
+
+                        <div class="p-16">
+                            <div class="h1">Summary</div>
+                            <div class="h4 secondary-text">{{recap_details.recap_date | date: 'MM/dd/yy'}}</div>
+                        </div>
+
+                        <div class="p-16 pt-0 line-height-1.75">
+        <p mat-line *ngIf="recap_details.goal_achieved==1; else elsegoals;">Goals Achieved : Yes </p>
+        <ng-template #elsegoals>
+          <p mat-line>Goals Achieved : No</p>
+        </ng-template>
+        <p mat-line *ngIf="recap_details.Individual_standards==1; else elsestandard;">Individual standards : Yes </p>
+        <ng-template #elsestandard>
+          <p mat-line>individual standards : No</p>
+        </ng-template>
+        <p mat-line *ngIf="recap_details.additional_responsibility==1; else elseresponsibility;">Additional responsibility : Yes </p>
+        <ng-template #elseresponsibility>
+          <p mat-line>Additional responsibility : No</p>
+        </ng-template>
+        <p mat-line>Performance: {{recap_details.member_performance}} </p>
+        <p mat-line>Employee Note: {{recap_details.creator_note}} </p>
+        <p mat-line>My Note: {{recap_details.member_note}} </p>
+                        </div>
+                    </div>
+                </div>
+    <mat-list>
+      <h4 mat-line>strength</h4>
+      <h3 mat-subheader>Recap Time Period</h3>
+      <mat-list-item *ngFor="let topic of strength_recap">
+        <mat-icon mat-list-icon>chevron_right</mat-icon>
+        <mat-chip-list>
+          <mat-chip>{{topic.Topic.topic_name}}</mat-chip>
+        </mat-chip-list>
+      </mat-list-item>
+      <h3 mat-subheader>Lifetime</h3>
+      <mat-list-item *ngFor="let topic of strength_lifetime">
+        <mat-icon mat-list-icon>chevron_right</mat-icon>
+        <mat-chip-list>
+          <mat-chip>{{topic.Topic.topic_name}}</mat-chip>
+        </mat-chip-list>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <h4 mat-line>Oppurtunity</h4>
+      <h3 mat-subheader>Recap Time Period</h3>
+      <mat-list-item *ngFor="let topic of oppurtunity_recap">
+        <mat-icon mat-list-icon>chevron_right</mat-icon>
+        <mat-chip-list>
+          <mat-chip>{{topic.Topic.topic_name}}</mat-chip>
+        </mat-chip-list>
+      </mat-list-item>
+      <h3 mat-subheader>Lifetime</h3>
+      <mat-list-item *ngFor="let topic of oppurtunity_lifetime">
+        <mat-icon mat-list-icon>chevron_right</mat-icon>
+        <mat-chip-list>
+          <mat-chip>{{topic.Topic.topic_name}}</mat-chip>
+        </mat-chip-list>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <h4 mat-line>Goal</h4>
+      <h3 mat-subheader>Completed</h3>
+      <mat-list-item *ngFor="let topic of completed_goal">
+        <mat-icon mat-list-icon>chevron_right</mat-icon>
+        <mat-chip-list>
+          <mat-chip>{{topic.Topic.topic_name}}</mat-chip>
+        </mat-chip-list>
+      </mat-list-item>
+      <h3 mat-subheader>Incompleted</h3>
+      <mat-list-item *ngFor="let topic of incompleted_goal">
+        <mat-icon mat-list-icon>chevron_right</mat-icon>
+        <mat-chip-list>
+          <mat-chip>{{topic.Topic.topic_name}}</mat-chip>
+        </mat-chip-list>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <h4 mat-line>Task</h4>
+      <h3 mat-subheader>Completed</h3>
+      <mat-list-item *ngFor="let topic of completed_task">
+        <mat-icon mat-list-icon>chevron_right</mat-icon>
+        <mat-chip-list>
+          <mat-chip>{{topic.Topic.topic_name}}</mat-chip>
+        </mat-chip-list>
+      </mat-list-item>
+      <h3 mat-subheader>Incompleted</h3>
+      <mat-list-item *ngFor="let topic of incompleted_task">
+        <mat-icon mat-list-icon>chevron_right</mat-icon>
+        <mat-chip-list>
+          <mat-chip>{{topic.Topic.topic_name}}</mat-chip>
+        </mat-chip-list>
+      </mat-list-item>
+    </mat-list>
+  </div>
+</div>

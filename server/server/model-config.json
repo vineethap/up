@@ -1,0 +1,90 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../common/mixins",
+      "./mixins"
+    ]
+  },
+  "User": {
+    "dataSource": "db"
+  },
+  "AccessToken": {
+    "dataSource": "db",
+    "public": false
+  },
+  "ACL": {
+    "dataSource": "db",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "db",
+    "public": false,
+    "options": {
+      "strictObjectIDCoercion": true
+    }
+  },
+  "Role": {
+    "dataSource": "db",
+    "public": false
+  },
+  "Member": {
+    "dataSource": "mongodb",
+    "public": true
+  },
+  "Subscription": {
+    "dataSource": "mongodb",
+    "public": true
+  },
+  "Franchise": {
+    "dataSource": "mongodb",
+    "public": true
+  },
+  "Store": {
+    "dataSource": "mongodb",
+    "public": true
+  },
+  "Scale": {
+    "dataSource": "mongodb",
+    "public": true
+  },
+  "PIP": {
+    "dataSource": "mongodb",
+    "public": true
+  },
+  "Topic": {
+    "dataSource": "mongodb",
+    "public": true
+  },
+  "StoreHistory": {
+    "dataSource": "mongodb",
+    "public": true
+  },
+  "FollowUp": {
+    "dataSource": "mongodb",
+    "public": true
+  },
+  "Checkin": {
+    "dataSource": "mongodb",
+    "public": true
+  },
+  "Recap": {
+    "dataSource": "mongodb",
+    "public": true
+  },
+  "MemberProfile": {
+    "dataSource": "mongodb",
+    "public": true
+  },
+  "UserPermission": {
+    "dataSource": "mongodb",
+    "public": true
+  }
+}

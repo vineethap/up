@@ -1,0 +1,377 @@
+// .spacebtwn{
+// 	margin-left: 10%;
+// }
+// .start-card {
+//  width: 1000px;
+// }
+// .cardtitle{
+//  margin-left: 173px;
+//  font-size: 23px;
+// }
+// .maindiv{
+// 	margin-top: 35px;
+// }
+// .mat-form-field {
+//     width: 200px;
+//     margin-left: 106px;
+// }
+@import "src/app/core/scss/fuse";
+%form_input {
+    border: 1px solid #b2b2b2;
+    width: 100%;
+    height: 40px;
+    font-size: 15px;
+    background: white;
+    border-radius: 3em;
+    padding: 0 15px;
+    font-family: 'opensans-regular';
+  }
+  
+
+%btn{
+    background: #00b2aa;
+    color: #fff;
+    border-radius: 3em;
+    border: 1px solid #00b2aa;
+    font-weight: 100;
+    letter-spacing: 0.5px;
+    min-width: 135px;
+    margin: 0 10px 0 10px;
+    font-size: 17px;
+    box-shadow: none;
+  }
+
+%common-btn{
+    background: #ccc;
+    color: #fff;
+    border-radius: 3em;
+    border: 1px solid #ccc;
+    font-weight: 100;
+    letter-spacing: 0.5px;
+    min-width: 135px;
+    margin: 0 10px 0 10px;
+    font-size: 17px;
+    box-shadow: none;
+  }
+  
+
+
+
+#check-in-start{
+    // display: flex;
+    // box-sizing: border-box;
+    // max-height: 100%;
+    height: 100%;
+    // flex-flow: row wrap;
+    // justify-content: center;
+    
+    // align-items: center;
+
+.outer_sec{
+    // display: flex;
+    // box-sizing: border-box;
+    // max-height: 100%;
+    // height: 100%;
+    // flex-flow: row wrap;
+    // justify-content: center;
+    
+    // align-items: center;
+    background: url("../../../../../../assets/images/check-in/background.png") no-repeat #fff;
+    background-size: cover;
+
+    .outer{
+        display: block !important;
+        width: 40vw;
+        margin: 100px auto;
+.check_in_head{
+    h3{
+        text-align: center;
+        font-size: 25px;
+    }
+}
+.input_sec{
+    display: block!important;
+    .mat-form-field{
+        width: 100%;
+    }
+    .recap_form {
+        margin-top: 5vh;
+  
+        .form_field {
+            margin: 15px 0;
+          label {
+            position: relative;
+  
+            input {
+                font-family: Dosis;
+              @extend %form_input;
+              background: #f1efef;
+              height: 40px;
+              border-radius: 3em;
+              padding: 0;
+              border: 1px solid #dedede;
+              max-width: 230px;
+              text-indent: 40px;
+            }
+  
+            img {
+              width: 15px;
+              position: absolute;
+              left: 18px;
+              top: 11px;
+            }
+  
+            .calender {
+              top: 11px;
+            }
+            mat-datepicker-toggle{
+              position: absolute;
+      left: 4px;
+      opacity: 0;
+            }
+          }
+        }
+      }
+  
+
+
+// .enter_name_sec{
+//     position: relative;
+//     display: flex;
+//     align-items: center;
+//     justify-content: flex-end;
+//     padding: 0 25px;
+//     .enter_name{
+                      
+//                 width: 200px;
+//                 padding: 0 20px;
+//                 box-sizing: border-box;
+//                 height: 40px;
+//                 background: #f1efef;
+//                 border-radius: 2em;
+//                 margin: 10px 10px;
+//                 border: 1.45px solid #dedede;
+//                 position: relative;
+//                 span{
+//                     position: absolute;
+//                     line-height: 38px;
+//                     z-index: 1;
+//                     left: 7px;
+//                     top: 0;
+//                     img{
+//                         width: 35px;
+//                         padding: 10px;
+//                     }
+//                 }
+               
+//                 input{
+                   
+//                     position: relative;
+//                     z-index: 3;
+//                     text-indent: 25px;
+//                     height: 38px;
+//                 }
+//                 input:focus + span {
+//                     color:transparent;
+//                 }
+               
+              
+//             }
+        
+// }
+    
+
+    // .date_picker{
+    //     position: relative;
+    //     display: flex;
+    //     align-items: center;
+    //     justify-content: flex-start;
+    //     padding: 0 25px;
+    //     .date_selection{
+    //         width: 200px;
+    //         padding: 0 20px;
+    //         box-sizing: border-box;
+    //         .mat-form-field{
+    //             opacity: 0;
+    //             z-index: 3;
+               
+    //         }
+    //         position: relative;
+           
+    //         height: 40px;
+    //         background: #f1efef;
+    //         border-radius: 2em;
+    //         margin: 10px 10px;
+    //         border: 1.45px solid #dedede; 
+    //         span{
+    //             position: absolute;
+    //             line-height: 36px;
+    //             z-index: 1;
+    //             left: 9px;
+    //             top: 1px;
+    //             img{
+    //                 width: 35px;
+    //                 padding: 10px;
+    //             }
+    //         }
+    //     }
+
+
+    //     .mat-form-field-prefix .mat-icon-button, .mat-form-field-suffix .mat-icon-button{
+    //         right: 46px;
+    //         bottom: 4px;
+    //         width: 118px;
+    //     }
+
+    // }
+.chip_list_outer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 50px;
+    span{
+        line-height: 10px;
+        margin: 0 0 0 15px;
+        i{
+            color:#fff;
+            font-weight: 100;
+
+        }
+    }
+    .chip_list{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 8px 0;
+        
+
+    }
+    .mat-chip:not(.mat-basic-chip){
+           background-color: #595959;
+    color: rgba(255, 255, 255, 0.87);
+    padding: 6px 15px !important;
+    font-size: 17px;
+    }
+    .mat-chip:not(.mat-basic-chip) .mat-chip-remove{
+        color: #ffff;
+        opacity: 1;
+        font-size: 20px;
+        line-height: 25px;
+    }
+    .mat-chip .mat-chip-remove.mat-icon{
+        font-size: 20px;
+    }
+    .mat-chip:not(.mat-basic-chip) .mat-chip-remove:hover{
+        opacity: 1;
+    }
+}
+    
+   
+}
+  
+  .btn_sec{
+      align-items: center;
+      justify-content: center;
+      margin: 20vh 0 0 0;
+      .btns_next{
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+      }
+      .btns_save{
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
+      .next_btn{
+          @extend %btn;
+        }
+                 
+        .btn-active.next_btn {
+          
+          @extend %common-btn;
+        }
+    }
+}
+}
+
+
+  
+}
+
+
+@media only screen and (max-width: 1024px){
+    #check-in-start .outer_sec .outer{
+      width: 55vw;
+    }
+  }
+  
+
+
+@include media-breakpoint-down('sm'){
+    #check-in-start .outer_sec .outer{
+        width: 75vw;
+    }
+
+    // #check-in-start .outer_sec .outer .input_sec .enter_name_sec{
+    //     padding: 0;
+    // }
+    // #check-in-start .outer_sec .outer .input_sec .enter_name_sec .enter_name span{
+    //     left: 0;
+    // }
+    // #check-in-start .outer_sec .outer .input_sec .enter_name_sec .enter_name span img{
+    //     width: 30px;
+    //     padding: 9px 7px;
+    // }
+    // #check-in-start .outer_sec .outer .input_sec .enter_name_sec .enter_name input{
+    //     text-indent: 10px;
+    // }
+}
+
+
+
+
+@include media-breakpoint-down('xs'){
+    #check-in-start .outer_sec .outer{
+        display: block !important;
+        width: 100%;
+        margin: 80px auto;
+    }
+    #check-in-start .outer_sec .outer .input_sec .enter_name_sec .enter_name{
+        width: 250px;
+    }
+     
+   
+    #check-in-start .outer_sec .outer .input_sec .date_picker .date_selection{
+        width: 250px;
+    }
+    #check-in-start .outer_sec .outer .btn_sec{
+        justify-content: center;
+        margin: 50px 0 0 0;
+    }
+    #check-in-start .outer_sec .outer .input_sec .enter_name_sec{
+        justify-content: center;
+    }
+    #check-in-start .outer_sec .outer .input_sec .date_picker{
+        justify-content: center;
+    }
+    #check-in-start .outer_sec .outer .input_sec .chip_list_outer{
+        margin: 0;
+    }
+    #check-in-start .outer_sec .outer .input_sec .chip_list_outer .mat-chip:not(.mat-basic-chip){
+        margin: 5px 0;
+    }
+    #check-in-start .outer_sec .outer .input_sec .enter_name span{
+        left: 70px;
+        top: 12px;
+    }
+    #check-in-start .outer_sec .outer .input_sec .date_picker .mat-form-field-prefix .mat-icon-button, #check-in-start .outer_sec .outer .input_sec .date_picker .mat-form-field-suffix .mat-icon-button{
+        right: 95px;
+    }
+    #check-in-start .outer_sec .outer .btn_sec .btn-active.next_btn{
+        min-width: 110px;
+    }
+    #check-in-start .outer_sec .outer .btn_sec .next_btn{
+        min-width: 110px;
+    }
+}

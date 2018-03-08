@@ -1,0 +1,41 @@
+{
+  "name": "Store",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "franchise_id": {
+      "type": "string"
+    },
+    "store_name": {
+      "type": "string"
+    },
+    "store_loc": {
+      "type": "string"
+    },
+    "store_region": {
+      "type": "string"
+    },
+    "store_area": {
+      "type": "string"
+    },
+    "store_street": {
+      "type": "string"
+    },
+    "store_city": {
+      "type": "string"
+    },
+    "store_state": {
+      "type": "string"
+    },
+    "store_zip": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

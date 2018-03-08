@@ -1,0 +1,315 @@
+body
+{
+    font-family: "Roboto",sans-serif;
+
+}
+.md-fuse-dark-500-bg {
+    background-color:white !important;
+    color: #3C4252 !important;
+}
+.md-fuse-dark-500-bg .mat-icon, .md-fuse-dark-500-bg .icon, .md-fuse-dark-500-bg .md2-datepicker-button {
+    color: #3C4252;
+}
+.outer-head
+{
+    background:rgb(255,255,254);
+    height:70px;
+    i
+    {
+        font-size:30px;
+        color:rgb(76,81,88);
+    }
+    img
+    {
+        width:70px;
+        height:45px;
+    }
+    .head-franch
+    {
+        
+        .head-franchname
+            {
+                padding:15px 0px;
+                font-size:20px;
+                color:rgb(137,208,13)
+            }
+        .head-franchplce
+        {
+            color:rgb(76,81,88);
+            font-size:12px;
+        }
+    }
+
+}
+.outer-body
+{
+    background:rgb(235,235,235);
+    height:auto;
+    padding:10px;
+    width:100%;
+    .body-leftnav-outer
+    {
+        width: 265px;
+
+    .body-leftnav
+    {
+        background:rgb(255,255,255);
+        .leftnav-sel
+        {
+            background:rgb(76,81,88);
+            color:white;
+
+        }
+        .left-nav
+        {
+            border-bottom: 1px solid rgb(235,235,235);
+            text-align: center;
+            line-height:65px;
+        }
+    }
+
+}
+    .body-right-outer
+    {
+        
+        padding:0px 10px;
+        
+        background:transparent;
+    }
+    .body-right
+    {
+        padding:10px;
+        background:rgb(255,255,255);
+        border-radius:20px;
+        h1
+        {
+            text-align: center;
+        }
+        .section-1
+        {
+            box-shadow: 1px 1px 1px 1px rgba(128, 128, 128, 0.3);
+            width: 20%;
+            float: left;
+            .section-green
+            {
+                background:#89d00d;
+                text-align: center;
+                i
+                {
+                    color:white;
+                    padding:20px;
+                    font-size: 40px;
+                }
+            }
+            .section-text
+            {
+                padding:10px;
+                b
+                {
+                    font-size: 35px;
+                    color:#89d00d;
+                }
+            }
+        }
+        .section-search
+        {
+            border:1px solid rgba(128, 128, 128, 0.49);
+            height:50px;
+            position: relative;
+            i
+            {
+                    text-align: right;
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    font-size: 20px;
+    color: rgba(76, 81, 88, 0.57);
+            }
+        }
+        .section-select
+        {
+            color:green;
+        }
+        .section-recent
+        {
+            .recent-outer
+            {
+                background:white;
+                padding:20px;
+                box-shadow: 1px 1px 1px 1px rgba(128, 128, 128, 0.23);
+                img
+                {
+                    width:40px;
+                    height:40px;
+                    
+                }
+                .recent-text
+                    {
+                        position:relative;
+                        img
+                        {
+                                width: 20px;
+    height: 20px;
+    position: absolute;
+    left: 45px;
+                        }
+                        h4
+                        {
+                            margin:0px;
+                        }
+                        p{
+                                margin: 0px;
+    font-size: 14px;
+    font-weight: 600;
+    color: 6b7483;
+                        }
+                    }
+                    .recent-arrow
+                    {
+                        margin-top:20px;
+                    }
+            }
+        }
+    }
+
+}
+.top_grid_section {
+    .top_grid_section_item {
+
+        .section-1
+        {
+                box-shadow: 0px 0px 5px 3px rgba(128, 128, 128, 0.09);
+    width: calc(100% - 30px);
+    float: left;
+    margin: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+            .section-green
+            {
+                background:#89d00d;
+                text-align: center;
+                i
+                {
+                    color:white;
+                    padding:20px;
+                    font-size: 40px;
+                }
+            }
+            .section-text
+            {
+                padding: 10px 15px;
+                b
+                {
+                    font-size: 27px;
+                    color:#89d00d;
+                }
+            }
+        }
+
+    }
+}
+.report_section {
+    
+}
+.special_section{
+    display: block !important;
+    box-sizing: border-box;
+    flex-direction: column;
+    max-width: 100%;
+    flex: 1 1 100%;
+    height: auto  !important;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.report_section {
+    padding: 25px;
+    h4 {
+    padding-left:0px;
+    }
+    .report_status_icon{
+
+    }
+}
+
+span.report_status_icon md-icon {
+        background: white;
+    border: 1.5px solid rgba(0, 0, 0, 0.39);
+    border-radius: 100%;
+    display: inline-block;
+    font-size: 19px;
+    text-align: center;
+    width: 20px;
+    height: 20px;
+    line-height: 22px;
+    color: white;
+    position: absolute;
+    left: 0;
+
+}
+.report_status_icon input:checked + md-icon{
+background:#89d00d;
+    border: 1.5px solid rgb(132, 205, 4);
+}
+.report_status_icon input {
+    opacity:0;
+    cursor : pointer;
+}
+.report_status_icon {
+    position: relative;
+    line-height: 0px;
+    display: inline-block;
+    height: 25px;
+}
+.report_status_icon input {
+    position: relative;
+    z-index: 8;
+    width: 25px;
+    height: 25px;
+    opacity: 0;
+}
+span.report_status_icon > span {
+        position: relative;
+    top: -8px;
+    left: 5px;
+    padding-right: 15px;
+}
+.image_bottom {
+    text-align:center;
+}
+.special_section {
+    background:white;
+}
+.section-green md-icon.mat-icon.material-icons {
+    color: white;
+    margin-top: 30px;
+    font-size: 28px;
+}
+.top_grid_section .top_grid_section_item .section-1 .section-text p {
+    padding: 0;
+    margin: 0;
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+.section-search {
+    text-align: right;
+    float: right;
+
+    input.right_search {
+    border: 1px solid #f4f4f4;
+    height: 33px;
+    border-radius: 4px;
+    width: 100%;
+    max-width: 284px;
+    display: inline-block;
+    float: right;
+    display: inline-block;
+
+    }
+    md-icon{
+    color: rgba(0, 0, 0, 0.24);
+    position: relative;
+    right: 30px;
+    top: 5px;
+
+    }
+
+}

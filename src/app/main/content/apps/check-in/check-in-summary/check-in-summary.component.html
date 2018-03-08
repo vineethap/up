@@ -1,0 +1,147 @@
+<mat-card id="check-in-sec">
+  <!-- <mat-card-header>
+    <mat-card-title >Checkin Summary</mat-card-title>
+  </mat-card-header>
+  <md-card-title > {{employee.name}}</md-card-title> -->
+  <!-- {{employee.date | date: 'MM/dd/yyyy'}} -->
+
+      <section class="check-in-content">
+          <!-- <h3>Employee Name: {{employee.name}}  Check-in Type: {{selected_type.name}}
+          Check In For: {{employee.date | date: 'MM/dd/yy'}}
+          </h3>       -->
+          <h3>Checkin Summary <span>{{employee.name}}</span></h3>
+        </section>   
+    
+
+
+   
+  
+  <mat-card-content>
+    <!-- <div fxLayout="row">
+      <mat-card *ngFor="let val of subtopic_details">
+        <mat-card-title>{{val.name}}</mat-card-title>
+        <mat-card-content>
+          <p *ngIf="val.rating">{{val.rating}}</p>
+          <p *ngIf="val.notes">{{val.notes}}</p>
+        </mat-card-content>
+      </mat-card>
+    </div> -->
+    
+    <div fxLayout="row" class="card_view_outer"  fxLayoutWrap>
+        <!-- <mat-card *ngFor="let val of checkinData" style="margin-right: 10px">
+          <mat-card-title>{{val.topic}}</mat-card-title>
+          <mat-card-content>
+            <p *ngIf="val.noteData">Notes : {{val.noteData}}</p>
+            <!-- <p *ngIf="val.notes">{{val.notes}}</p> 
+          </mat-card-content>
+        </mat-card> -->
+      
+
+      <div fxFlex.gt-xs="50" fxFlex.xs="100"  *ngIf = "MemberCheckInType[0] != undefined" >
+         <div fxLayout="row" fxLayoutWrap class="card_view {{MemberCheckInType[0].CheckInType.class}}">
+          <h3>  {{MemberCheckInType[0].CheckInType.checkin_name}}</h3>
+            <div fxLayout="row" class="summery_content" fxLayoutWrap>
+            <div fxFlex="100" class="summery_content_data" *ngFor="let topic of MemberCheckinTopicFirst">
+              <p class="head">Topic: {{topic.Topic.topic_name}} <span>This happened on: {{employee.date | date: 'MM/dd/yy'}}</span>  </p> 
+              <p class="comments">Comments:<span>  {{topic.comments}}</span></p>
+              <p  class="date">Follow Up By:<span>  {{topic.follow_up_date | date :  "MM/dd/yy"}}</span></p>
+              <p  class="date" *ngIf="topic.start_date != undefined">Start Date:<span>  {{topic.start_date | date :  "MM/dd/yy"}}</span></p>
+              <p  class="date" *ngIf="topic.end_date != undefined">End Date:<span>  {{topic.end_date | date :  "MM/dd/yy"}}</span></p>
+              <p  class="date" *ngIf="topic.expected_date != undefined">Improvement By:<span>  {{topic.expected_date | date :  "MM/dd/yy"}}</span></p>
+              <p  class="date" *ngIf="topic.misconduct != undefined && topic.misconduct == 1">Misconduct:<span>  Yes</span></p>
+              <p  class="date" *ngIf="topic.above_beyond != undefined && topic.above_beyond == 1">Above Beyond:<span>  Yes</span></p>
+            </div>
+            </div>
+          </div>
+      </div>  
+
+      <div fxFlex.gt-xs="50" fxFlex.xs="100" *ngIf = "MemberCheckInType[1]!= undefined">
+
+        <div fxLayout="row" fxLayoutWrap class="card_view {{MemberCheckInType[1].CheckInType.class}}">
+        <h3> {{MemberCheckInType[1].CheckInType.checkin_name}}</h3>
+        <div fxLayout="row"  class="summery_content" fxLayoutWrap>
+            <div fxFlex="100" class="summery_content_data" *ngFor="let topic of MemberCheckinTopicSecond">
+               <p class="head">Topic: {{topic.Topic.topic_name}} <span>This happened on: {{employee.date | date: 'MM/dd/yy'}} </span> </p> 
+              <p class="comments">Comments:<span> {{topic.comments}}</span></p>
+              <p class="date">Follow Up By:<span>{{topic.follow_up_date | date :  "MM/dd/yy"}}</span> </p>
+              <p  class="date" *ngIf="topic.start_date != undefined">Start Date:<span> {{topic.start_date | date :  "MM/dd/yy"}}</span></p>
+              <p  class="date" *ngIf="topic.end_date != undefined">End Date:<span>  {{topic.end_date | date :  "MM/dd/yy"}}</span></p>
+              <p  class="date" *ngIf="topic.expected_date != undefined">Improvement By:<span>  {{topic.expected_date | date :  "MM/dd/yy"}}</span></p>
+              <p  class="date" *ngIf="topic.misconduct != undefined && topic.misconduct == 1">Misconduct:<span>  Yes</span></p>
+              <p  class="date" *ngIf="topic.above_beyond != undefined && topic.above_beyond == 1">Above Beyond:<span>  Yes</span></p>
+              
+            </div>
+          </div>
+          </div>
+      </div> 
+
+
+    </div>
+
+    <div fxLayout="row" fxLayoutWrap>
+
+      <div fxFlex="100">
+       
+
+      <div fxLayout="row" class="toggle_sec summery" fxLAyoutWrap *ngIf="this.employee.selectedEmployeeLength > 1">
+
+          <div fxFlex.gt-xs="35" fxFlex.xs="50" class="toggle_txt">
+              <p>Do You Need Employee Acknowledgement in this Email ?</p>
+          </div> 
+        <div fxFlex.gt-xs="65" fxFlex.xs="50" class="toggle_btn">
+          <mat-slide-toggle  [(ngModel)]="ack_button" >
+              <span class="on_btn">yes</span>
+              <span class="off_btn">no</span>
+              {{ message }}
+          </mat-slide-toggle>
+        </div>
+
+      </div>
+    
+    </div>
+
+<div [ngClass]="{'summery_sec_active':this.employee.selectedEmployeeLength > 1}" fxFlex.gt-xs="50" fxFlex.xs="100">
+      <div  *ngIf="this.employee.selectedEmployeeLength == 1">
+        <div class="Acknowledgement">
+          <p>I have received and understand the feedback in this checkin</p>
+        </div>
+        <div>
+          <button mat-raised-button class="btn"
+          (click)="employeeSendSummary()">Employee Acknowledgement</button>
+        </div>
+      </div>
+      <div  *ngIf="!this.employee.selectedEmployeeLength">
+          <div class="Acknowledgement">
+            <p>I have received and understand the feedback in this checkin</p>
+          </div>
+          <div>
+            <button mat-raised-button class="btn"
+            (click)="employeeSendSummary()">Employee Acknowledgement</button>
+          </div>
+        </div>
+    </div>
+
+    <div fxFlex.gt-xs="50" fxFlex.xs="100">
+      <div  *ngIf="this.employee.selectedEmployeeLength >= 1">
+        <div class="Acknowledgement">
+          <p>The feedback provided is factual and consistent with company standards</p>
+        </div>
+        <div>
+          <button mat-raised-button class="btn"
+          (click)="sendSummary()">Manager Acknowledgement</button>
+        </div>
+      </div>
+      <div  *ngIf="!this.employee.selectedEmployeeLength">
+          <div class="Acknowledgement">
+            <p>The feedback provided is factual and consistent with company standards</p>
+          </div>
+          <div>
+            <button mat-raised-button class="btn"
+            (click)="sendSummary()">Manager Acknowledgement</button>
+          </div>
+        </div>
+    </div>
+
+    </div>
+  </mat-card-content>
+</mat-card>

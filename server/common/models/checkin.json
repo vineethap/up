@@ -1,0 +1,29 @@
+{
+  "name": "Checkin",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "manager_id": {
+      "type": "string"
+    },
+    "member_id": {
+      "type": "string"
+    },
+    "scale_id": {
+      "type": "string"
+    },
+    "feedback": {
+      "type": "string"
+    },
+    "checkin_status": {
+      "type": "boolean"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

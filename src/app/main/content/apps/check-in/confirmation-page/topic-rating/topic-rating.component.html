@@ -1,0 +1,37 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{topics.type_name}}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <!--   <div fxLayout="row" >
+   <img mat-card-image src="assets/images/keep it up.png" style="width: 30px;height: 30px;margin-left: 10px; cursor: pointer;" (click)="selectRating(topics,3)">
+   <img mat-card-image src="assets/images/progress.png" style="width: 30px;height: 30px; float: right;margin-left: 10px;cursor: pointer;" (click)="selectRating(topics,2)">
+   <img mat-card-image src="assets/images/need imprvmnt.png" style="width: 30px;height: 30px; float: right;margin-left: 10px;cursor: pointer;" (click)="selectRating(topics,1)">
+   </div> -->
+    <form [formGroup]="noteFrom" novalidate>
+      <div>
+        <mat-form-field>
+          <textarea matInput placeholder="Few notes" matTextareaAutosize matAutosizeMinRows="2" #box matAutosizeMaxRows="5" (keydown.enter)="addNotes($event,box.value,topics)"></textarea>
+        </mat-form-field>
+      </div>
+      <div *ngIf="selected.name=='Correct'">
+        <div fxLayout="column">
+          <mat-checkbox formControlName="future" name="future">Followup</mat-checkbox>
+        </div>
+        <div fxLayout="column" *ngIf="noteFrom.value.future">
+          <mat-form-field class="spacebtwn">
+            <input matInput [matDatepicker]="picker2" placeholder="Date" formControlName="date" (dateChange)="addEvent(topics.type_name, $event)">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+  </mat-card-content>
+<!--   <mat-card-actions>
+    <p>
+      <mat-icon>edit
+      </mat-icon>Edit</p>
+  </mat-card-actions> -->
+</mat-card>

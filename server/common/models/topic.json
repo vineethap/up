@@ -1,0 +1,23 @@
+{
+  "name": "Topic",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "topic_name": {
+      "type": "string"
+    },
+    "topic_type": {
+      "type": "string"
+    },
+    "store_id": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

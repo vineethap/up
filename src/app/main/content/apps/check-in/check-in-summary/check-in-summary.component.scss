@@ -1,0 +1,348 @@
+
+@import "src/app/core/scss/fuse";
+
+$recognition_color:#4886c4;
+$correction_minor_color:#6e5291;
+$correction_major_color:#ed6863;
+$information_color:#5d5d5d;
+
+
+%card_content{
+  width: 100%;
+  .summery_content_data{
+    padding: 0 0 20px 0;
+    border-bottom: 1.45px solid rgba(204, 204, 204, 0.28);
+
+    &:last-child(){
+      border-bottom: 0;
+      padding: 0;
+    }
+
+    p.head{
+      margin: 0;
+      font-weight: 600;
+      font-size: 18px;
+      padding: 15px 0 5px 0;
+      span{
+        float: right;
+        font-weight: 400;
+        font-size: 14px;
+      }
+  
+    }
+    p{
+      margin: 0;
+      padding: 5px 0;
+      font-weight: normal;
+      font-size: 14px;
+    }
+    p.comments{
+      white-space: normal;
+      width: 100%;
+      word-wrap: break-word;
+      font-size: 17px;
+      line-height: 21px;
+      letter-spacing: 0.4px;
+      font-weight: 500;
+      span{
+        font-size: 15px;
+        font-weight: 400;
+      }
+    }
+    p.date{
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+      padding: 5px 0 0 0;
+      span{
+        font-weight: 500;
+        padding: 0 15px;
+        font-size: 15px;
+      }
+    }
+  }
+}
+
+%btn{
+  background: #00b2aa;
+  color: #fff;
+  border-radius: 3em;
+  border: 1px solid #00b2aa;
+  font-weight: 100;
+  letter-spacing: 0.5px;
+  min-width: 135px;
+  margin: 0 10px 0 10px;
+  font-size: 17px;
+  box-shadow: none;
+}
+
+#check-in-sec{
+
+  .card_view_outer{
+    width: 100%;
+    .card_view.recognize{
+      background: #fff;
+      border: 1.45px solid $recognition_color;
+      border-radius: 4px;
+      // box-shadow: 0px 0px 7px 1px $recognition_color;
+      padding: 15px;
+      width: auto;
+      margin: 20px 20px 0 0;
+      h3{
+        font-weight: 500;
+        width: 100%;
+        font-size: 17px;
+        padding: 0 0 15px 0;
+        margin: 0;
+        border-bottom: 1.45px solid $recognition_color;
+        color: $recognition_color;
+      }
+      .summery_content{
+        @extend %card_content;
+       
+    }
+    
+  
+  }
+    .card_view.correction_minor{
+      background: #fff;
+      border: 1.45px solid $correction_minor_color;
+      border-radius: 4px;
+      // box-shadow: 0px 0px 7px 1px $correction_minor_color;
+      width: auto;
+      padding: 15px;
+      margin: 20px 20px 0 0;
+      h3{
+        font-weight: 500;
+        width: 100%;
+        font-size: 17px;
+        padding: 0 0 15px 0;
+        margin: 0;
+        border-bottom: 1.45px solid $correction_minor_color;
+        color: $correction_minor_color;
+      }
+      .summery_content{
+        @extend %card_content;
+      }
+    
+    }
+
+    .card_view.correction_major{
+      background: #fff;
+      border: 1.45px solid $correction_major_color;
+      border-radius: 4px;
+      // box-shadow: 0px 0px 7px 1px $correction_minor_color;
+      width: auto;
+      padding: 15px;
+      margin: 20px 20px 0 0;
+      h3{
+        font-weight: 500;
+        width: 100%;
+        font-size: 17px;
+        padding: 0 0 15px 0;
+        margin: 0;
+        border-bottom: 1.45px solid $correction_major_color;
+        color: $correction_major_color;
+      }
+      .summery_content{
+        @extend %card_content;
+      }
+    
+    }
+
+    .card_view.task{
+      background: #fff;
+      border: 1.45px solid $information_color;
+      border-radius: 4px;
+      // box-shadow: 0px 0px 7px 1px $correction_minor_color;
+      width: auto;
+      padding: 15px;
+      margin: 20px 20px 0 0;
+      h3{
+        font-weight: 500;
+        width: 100%;
+        font-size: 17px;
+        padding: 0 0 15px 0;
+        margin: 0;
+        border-bottom: 1.45px solid $information_color;
+        color: $information_color;
+      }
+      .summery_content{
+        @extend %card_content;
+      }
+    
+    }
+
+
+    .card_view.goal{
+      background: #fff;
+      border: 1.45px solid $information_color;
+      border-radius: 4px;
+      // box-shadow: 0px 0px 7px 1px $correction_minor_color;
+      width: auto;
+      padding: 15px;
+      margin: 20px 20px 0 0;
+      h3{
+        font-weight: 500;
+        width: 100%;
+        font-size: 17px;
+        padding: 0 0 15px 0;
+        margin: 0;
+        border-bottom: 1.45px solid $information_color;
+        color: $information_color;
+      }
+      .summery_content{
+        @extend %card_content;
+      }
+    
+    }
+    .card_view.news{
+      background: #fff;
+      border: 1.45px solid $information_color;
+      border-radius: 4px;
+      // box-shadow: 0px 0px 7px 1px $correction_minor_color;
+      width: auto;
+      padding: 15px;
+      margin: 20px 20px 0 0;
+      h3{
+        font-weight: 500;
+        width: 100%;
+        font-size: 17px;
+        padding: 0 0 15px 0;
+        margin: 0;
+        border-bottom: 1.45px solid $information_color;
+        color: $information_color;
+      }
+      .summery_content{
+        @extend %card_content;
+      }
+    
+    }
+
+  }
+  .btn{
+    @extend %btn;
+  }
+  .toggle_sec.summery{
+    padding: 15px 0 0 0;
+    .toggle_txt{
+      p{
+        font-size: 15px;
+        margin: 0;
+        padding: 10px 0;
+        font-weight: 400;
+        letter-spacing: 0.5px;
+      }
+    }
+    .mat-slide-toggle-bar{
+      height: 20px;
+      width: 50px;
+      border-radius: 3em;
+      }
+      .toggle_btn{
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        .mat-slide-toggle-label{
+          position: relative;
+          .mat-slide-toggle-content{
+            span.on_btn{
+              opacity:0;
+             }
+             span.off_btn{
+              opacity: 1;
+              position: absolute;
+              z-index: 1;
+              left: 10px;
+              top:1.5px;
+              color: #fff;
+              text-shadow:1px 1px rgba(158, 158, 158, 0.57);
+              text-transform: uppercase;
+              font-size: 9px;
+              letter-spacing: 0.5px;
+              font-family: Roboto;
+             }
+          }
+          
+        }
+        .mat-checked{
+          .mat-slide-toggle-thumb-container{
+            left: 0;
+            right: inherit;
+            top: 0;
+           
+          }
+          .mat-slide-toggle{
+            height: 20px;
+          }
+          .mat-slide-toggle-label{
+            position: relative;
+            span.on_btn{
+              opacity: 1;
+              position: absolute;
+              text-shadow:1px 1px #00b2aa;
+              z-index: 1;
+              right: 18px;
+              top:1px;
+              color: #fff;
+              text-transform: uppercase;
+              font-size: 9px;
+              letter-spacing: 0.5px;
+              font-family: Roboto;
+            }
+            span.off_btn{
+              opacity: 0;
+             }
+          }
+        }
+        .mat-slide-toggle-thumb-container{
+          left: inherit;
+          right: 0;
+          top: 0;
+          }
+          .mat-slide-toggle-thumb{
+            border: 2px solid #9c9c9c;
+            box-shadow: none;
+          }
+        .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb-container{
+          transform: translate3d(0,0,16px);
+          
+         
+        }
+        .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar{
+          background-color:#00b2aa;
+        }
+        .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb{
+          background-color:#fff;
+          border: 2px solid #00b2aa;
+          box-shadow: none;
+        }
+        }
+    
+  }
+  .summery_sec_active{
+    display: none;
+  }
+ .Acknowledgement{
+   p{
+    font-size: 16px;
+    margin: 0;
+    padding: 15px 0 15px 0;
+   }
+ }
+}
+
+
+
+@include media-breakpoint-down('sm'){
+  #check-in-sec .card_view_outer .summery_content .summery_content_data p.head span{
+    width: 100%;
+  }
+}
+
+
+@include media-breakpoint-down('xs'){
+  #check-in-sec .card_view_outer .summery_content .summery_content_data p.head span{
+    width: 100%;
+  }
+}

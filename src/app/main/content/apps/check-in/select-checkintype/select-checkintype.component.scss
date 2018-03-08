@@ -1,0 +1,601 @@
+@import url(https://fonts.googleapis.com/css?family=Dosis);
+@import "src/app/core/scss/fuse";
+body{
+  h,p,span,div,section,button{
+    font-family: 'Dosis';
+  }
+    
+}
+
+.mat-ripple{
+  display: none;
+}
+.mat-card{
+  padding: 10px 30px;
+  box-shadow: none;
+}
+
+%btn{
+  background: #00b2aa;
+  color: #fff;
+  border-radius: 3em;
+  border: 1px solid #00b2aa;
+  font-weight: 100;
+  letter-spacing: 0.5px;
+  min-width: 135px;
+  margin: 0 10px 0 10px;
+  font-size: 17px;
+  box-shadow: none;
+}
+
+%common-btn{
+  background: #ccc;
+  color: #fff;
+  border-radius: 3em;
+  border: 1px solid #ccc;
+  font-weight: 100;
+  letter-spacing: 0.5px;
+  min-width: 135px;
+  margin: 0 10px 0 10px;
+  font-size: 17px;
+  box-shadow: none;
+}
+
+%card_view_unselected{
+    width: 250px;
+    min-height: 200px;
+    margin: 0 auto;
+    border-radius: 3px;
+       border: 1.45px solid rgba(218, 218, 218, 0.25);
+    // box-shadow: 0px 1px 10px 0px rgba(71, 134, 196, 0.33);
+     // border: 1.2px solid rgba(71, 134, 196, 0.61);
+    box-shadow: 0px 1px 10px 0px rgba(218, 218, 218, 0.21);
+    background: #fff;
+}
+
+%card_view_selected{
+  width: 250px;
+  min-height: 200px;
+  margin: 0 auto;
+  border-radius: 3px;
+  opacity: 1;
+background: #fff;
+}
+%card_img_outer{
+  width: 100px;
+  height: 75px;
+  margin: 25px auto;
+  img{
+    width:100%;
+    height: 100%;
+  }
+}
+
+%card_heading{
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 19px;
+  margin: 0 auto;
+  text-transform: uppercase;
+  max-width: 150px;
+  word-wrap: break-word;
+  white-space: normal;
+  letter-spacing: 0.3px;
+}
+
+#check-in-sec{
+    font-family: 'Dosis';
+
+    background: #fbfbfb;
+    box-shadow: none;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    .check-in-content{
+        h3{
+          font-size: 22px;
+          margin: 0;
+          font-weight: 100;
+          letter-spacing: 0.3px;
+          color: #343434;
+            span{
+              font-weight: 300;
+              float: right;
+              text-transform: capitalize;
+              font-size: 17px;
+              color: #01b2aa;
+              line-height: 33px;
+            }
+        }
+    }
+
+    .check_in_innerblock{
+        h3{
+            text-transform: capitalize;
+            font-size: 18px;
+            color: #343434;
+            margin: 5px 0 10px 0;
+          
+        }
+        h3.inform_head{
+          margin: 5px 0 20px 0;
+        }
+    }
+    .behavior_card_outer_sec{
+        .behavior_card_outer{
+&:nth-child(1){
+  span{
+  @extend %card_heading;
+    color:#4886c4;
+    .information_head{
+      color: #5d5d5d;
+    }
+  }
+  .active{
+    @extend %card_view_selected;
+    box-shadow: 0px 1px 17px 1px rgba(71, 134, 196, 0.25);
+    border: 1.45px solid rgba(71, 134, 196, 0.75);
+   
+  }
+}
+&:nth-child(2){
+   
+    span{
+      @extend %card_heading;
+        color:#6e5291;
+        .information_head{
+          color: #5d5d5d;
+        }
+      }
+
+  
+  .active{
+    @extend %card_view_selected;
+    box-shadow: 0px 1px 17px 1px rgba(110, 82, 145, 0.25);
+    border: 1.45px solid rgba(110, 82, 145, 0.75);
+  }
+}
+&:nth-child(3){
+  
+  span{
+    @extend %card_heading;
+      color:#ed6863;
+      .information_head{
+        color: #5d5d5d;
+      }
+    }
+  .active{
+    @extend %card_view_selected;
+    box-shadow: 0px 1px 17px 1px rgba(237, 104, 99, 0.25);
+    border: 1.45px solid rgba(237, 104, 99, 0.75);
+  }
+}
+
+            .behavior_card{
+               
+                @extend %card_view_unselected;
+                position: relative;
+                   
+
+              
+               
+    .mat-checkbox-inner-container{
+        min-width: 248px;
+        opacity: 0;
+        position: relative;
+        display: inline-block;
+        line-height: 0;
+        margin: auto;
+        order: 0;
+        position: relative;
+        flex-shrink: 0;
+        min-height: 200px;
+    }
+    .mat-checkbox-layout .mat-checkbox-label{
+        position: absolute;
+        min-width: 248px;
+        min-height: 200px;
+        left: 0;
+    }
+.card_icons{
+  @extend %card_img_outer
+}
+                
+            }
+            
+
+            .inform-active{
+              @extend %card_view_selected;
+              box-shadow: 0px 1px 17px 1px rgba(125, 125, 125, 0.25);
+              border: 1.2px solid rgba(125, 125, 125, 0.75);
+            }
+        }
+    }
+
+
+.btn_sec{
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+  .next_btn{
+    @extend %common-btn;
+    }
+    
+    .back_btn{
+      @extend %btn;
+    }
+    .btn-active.next_btn {
+      @extend %btn;
+    }
+}
+
+}
+
+
+@media only screen and(max-width:769px){
+  #check-in-sec .behavior_card_outer_sec .behavior_card_outer .behavior_card{
+    margin: 10px auto;
+    }
+    #check-in-sec .behavior_card_outer_sec .behavior_card_outer .behavior_card.active{
+      margin: 10px auto;
+    }
+    #check-in-sec .check-in-content h3 span{
+      width: 100%;
+      display: block;
+    }
+}
+
+
+
+@media only screen and(max-width:653px){
+  #check-in-sec{
+    height: auto;
+  }
+
+}
+
+
+@include media-breakpoint-down('sm'){
+
+  #check-in-sec .behavior_card_outer_sec .behavior_card_outer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #check-in-sec .behavior_card_outer_sec .behavior_card_outer .behavior_card .mat-checkbox-inner-container{
+    min-height: 200px;
+    min-width: 220px;
+  }
+ 
+  #check-in-sec .behavior_card_outer_sec .behavior_card_outer .behavior_card{
+    width: 220px;
+    min-height:200px;
+    margin: 0 auto;
+    border-radius: 3px;
+    border: 1.45px solid rgba(218, 218, 218, 0.25);
+    box-shadow: 0px 1px 10px 0px rgba(218, 218, 218, 0.21);
+    background: #fff;
+    }
+    #check-in-sec .behavior_card_outer_sec .behavior_card_outer .behavior_card .mat-checkbox-layout .mat-checkbox-label{
+      position: absolute;
+      min-width: 220px;
+      min-height: 200px;
+    }
+    #check-in-sec .behavior_card_outer_sec .behavior_card_outer .behavior_card{
+      margin: 5px!important;
+    }
+    #check-in-sec .behavior_card_outer_sec .behavior_card_outer .behavior_card .card_icons{
+      width: 100px;
+      height: 60px;
+      margin: 25px auto;
+    }
+    #check-in-sec .behavior_card_outer_sec .behavior_card_outer:nth-child(1) span, #check-in-sec .behavior_card_outer_sec .behavior_card_outer:nth-child(2) span, #check-in-sec .behavior_card_outer_sec .behavior_card_outer:nth-child(3) span{
+      display: block;
+      width: 100%;
+      text-align: center;
+      font-size: 18px;
+      margin: 0 auto;
+      text-transform: uppercase;
+      max-width: 220px;
+      word-wrap: break-word;
+      white-space: normal;
+      letter-spacing: 0.3px;
+      line-height: 23px;
+    }
+
+
+    #check-in-sec .behavior_card_outer_sec .behavior_card_outer:nth-child(1) .active, #check-in-sec .behavior_card_outer_sec .behavior_card_outer:nth-child(2) .active, #check-in-sec .behavior_card_outer_sec .behavior_card_outer:nth-child(3) .active, #check-in-sec .behavior_card_outer_sec .behavior_card_outer .inform-active{
+      width: 220px;
+      min-height: 200px;
+      margin: 0 auto;
+      border-radius: 3px;
+      opacity: 1;
+      background: #fff;
+      
+    }
+    #check-in-sec .behavior_card_outer_sec .behavior_card_outer .inform-active{
+      box-shadow: 0px 1px 17px 1px rgba(125, 125, 125, 0.25);
+      border: 1.2px solid rgba(125, 125, 125, 0.75);
+    }
+    #check-in-sec .btn_sec{
+      margin: 15vh 0 0 0;
+    }
+    #check-in-sec .btn_sec .back_btn, #check-in-sec .btn_sec .btn-active.next_btn{
+      min-width: 110px;
+      font-size: 14px;
+    }
+    #check-in-sec .btn_sec .next_btn{
+      min-width: 110px;
+      font-size: 14px;
+    }
+
+}
+
+
+
+
+
+
+
+// new
+
+
+@include media-breakpoint-down('xs'){
+  .mat-card{
+    padding: 15px 10px !important;
+  }
+  #check-in-sec .behavior_card_outer_sec .behavior_card_outer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #check-in-sec .behavior_card_outer_sec .behavior_card_outer .behavior_card .mat-checkbox-inner-container{
+    min-height: 110px;
+    min-width: 110px;
+  }
+ 
+  #check-in-sec .behavior_card_outer_sec .behavior_card_outer .behavior_card{
+    width: 110px;
+    min-height:110px;
+    margin: 0 auto;
+    border-radius: 3px;
+    border: 1.45px solid rgba(218, 218, 218, 0.25);
+    box-shadow: 0px 1px 10px 0px rgba(218, 218, 218, 0.21);
+    background: #fff;
+    }
+    #check-in-sec .behavior_card_outer_sec .behavior_card_outer .behavior_card .mat-checkbox-layout .mat-checkbox-label{
+      position: absolute;
+      min-width: 110px;
+      min-height: 110px;
+    }
+    #check-in-sec .behavior_card_outer_sec .behavior_card_outer .behavior_card{
+      margin: 5px!important;
+    }
+    #check-in-sec .behavior_card_outer_sec .behavior_card_outer .behavior_card .card_icons{
+      width: 78px;
+      height: 35px;
+      margin: 15px auto;
+    }
+    #check-in-sec .behavior_card_outer_sec .behavior_card_outer:nth-child(1) span, #check-in-sec .behavior_card_outer_sec .behavior_card_outer:nth-child(2) span, #check-in-sec .behavior_card_outer_sec .behavior_card_outer:nth-child(3) span{
+      display: block;
+      width: 100%;
+      text-align: center;
+      font-size: 12px;
+      margin: 0 auto;
+      text-transform: uppercase;
+      max-width: 100px;
+      word-wrap: break-word;
+      white-space: normal;
+      letter-spacing: 0.3px;
+      line-height: 14px;
+    }
+
+
+    #check-in-sec .behavior_card_outer_sec .behavior_card_outer:nth-child(1) .active, #check-in-sec .behavior_card_outer_sec .behavior_card_outer:nth-child(2) .active, #check-in-sec .behavior_card_outer_sec .behavior_card_outer:nth-child(3) .active, #check-in-sec .behavior_card_outer_sec .behavior_card_outer .inform-active{
+      width: 110px;
+      min-height: 110px;
+      margin: 0 auto;
+      border-radius: 3px;
+      opacity: 1;
+      background: #fff;
+      
+    }
+    #check-in-sec .behavior_card_outer_sec .behavior_card_outer .inform-active{
+      box-shadow: 0px 1px 17px 1px rgba(125, 125, 125, 0.25);
+      border: 1.2px solid rgba(125, 125, 125, 0.75);
+    }
+    #check-in-sec .btn_sec{
+      margin: 7vh 0 0 0;
+    }
+    #check-in-sec .btn_sec .back_btn, #check-in-sec .btn_sec .btn-active.next_btn{
+      min-width: 110px;
+      font-size: 14px;
+    }
+    #check-in-sec .btn_sec .next_btn{
+      min-width: 110px;
+      font-size: 14px;
+    }
+}
+
+
+// new
+
+
+@media only screen and (max-width: 350px){
+  .mat-card{
+        padding: 15px 10px !important;
+      }
+      #check-in-sec .behavior_card_outer_sec .behavior_card_outer{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      #check-in-sec .behavior_card_outer_sec .behavior_card_outer .behavior_card .mat-checkbox-inner-container{
+        min-height: 110px;
+        min-width: 87px;
+      }
+     
+      #check-in-sec .behavior_card_outer_sec .behavior_card_outer .behavior_card{
+        width: 87px;
+        min-height:110px;
+        margin: 0 auto;
+        border-radius: 3px;
+        border: 1.45px solid rgba(218, 218, 218, 0.25);
+        box-shadow: 0px 1px 10px 0px rgba(218, 218, 218, 0.21);
+        background: #fff;
+        }
+        #check-in-sec .behavior_card_outer_sec .behavior_card_outer .behavior_card .mat-checkbox-layout .mat-checkbox-label{
+          position: absolute;
+          min-width: 87px;
+          min-height: 110px;
+        }
+        #check-in-sec .behavior_card_outer_sec .behavior_card_outer .behavior_card{
+          margin: 5px!important;
+        }
+        #check-in-sec .behavior_card_outer_sec .behavior_card_outer .behavior_card .card_icons{
+          width: 78px;
+          height: 35px;
+          margin: 15px auto;
+        }
+        #check-in-sec .behavior_card_outer_sec .behavior_card_outer:nth-child(1) span, #check-in-sec .behavior_card_outer_sec .behavior_card_outer:nth-child(2) span, #check-in-sec .behavior_card_outer_sec .behavior_card_outer:nth-child(3) span{
+          display: block;
+          width: 100%;
+          text-align: center;
+          font-size: 11px;
+          margin: 0 auto;
+          text-transform: uppercase;
+          max-width: 75px;
+          word-wrap: break-word;
+          white-space: normal;
+          letter-spacing: 0.3px;
+          line-height: 14px;
+        }
+    
+    
+        #check-in-sec .behavior_card_outer_sec .behavior_card_outer:nth-child(1) .active, #check-in-sec .behavior_card_outer_sec .behavior_card_outer:nth-child(2) .active, #check-in-sec .behavior_card_outer_sec .behavior_card_outer:nth-child(3) .active, #check-in-sec .behavior_card_outer_sec .behavior_card_outer .inform-active{
+          width: 87px;
+          min-height: 110px;
+          margin: 0 auto;
+          border-radius: 3px;
+          opacity: 1;
+          background: #fff;
+          
+        }
+        #check-in-sec .behavior_card_outer_sec .behavior_card_outer .inform-active{
+          box-shadow: 0px 1px 17px 1px rgba(125, 125, 125, 0.25);
+          border: 1.2px solid rgba(125, 125, 125, 0.75);
+        }
+        #check-in-sec .btn_sec{
+          margin: 7vh 0 0 0;
+        }
+        #check-in-sec .btn_sec .back_btn, #check-in-sec .btn_sec .btn-active.next_btn{
+          min-width: 110px;
+          font-size: 14px;
+        }
+        #check-in-sec .btn_sec .next_btn{
+          min-width: 110px;
+          font-size: 14px;
+        }
+}
+
+
+// @include media-breakpoint-down('xs'){
+//   .mat-card{
+//     padding: 15px 10px !important;
+//   }
+//   #check-in-sec .behavior_card_outer_sec .behavior_card_outer{
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//   }
+//   #check-in-sec .behavior_card_outer_sec .behavior_card_outer .behavior_card .mat-checkbox-inner-container{
+//     min-height: 110px;
+//     min-width: 87px;
+//   }
+ 
+//   #check-in-sec .behavior_card_outer_sec .behavior_card_outer .behavior_card{
+//     width: 87px;
+//     min-height:110px;
+//     margin: 0 auto;
+//     border-radius: 3px;
+//     border: 1.45px solid rgba(218, 218, 218, 0.25);
+//     box-shadow: 0px 1px 10px 0px rgba(218, 218, 218, 0.21);
+//     background: #fff;
+//     }
+//     #check-in-sec .behavior_card_outer_sec .behavior_card_outer .behavior_card .mat-checkbox-layout .mat-checkbox-label{
+//       position: absolute;
+//       min-width: 87px;
+//       min-height: 110px;
+//     }
+//     #check-in-sec .behavior_card_outer_sec .behavior_card_outer .behavior_card{
+//       margin: 5px!important;
+//     }
+//     #check-in-sec .behavior_card_outer_sec .behavior_card_outer .behavior_card .card_icons{
+//       width: 78px;
+//       height: 35px;
+//       margin: 15px auto;
+//     }
+//     #check-in-sec .behavior_card_outer_sec .behavior_card_outer:nth-child(1) span, #check-in-sec .behavior_card_outer_sec .behavior_card_outer:nth-child(2) span, #check-in-sec .behavior_card_outer_sec .behavior_card_outer:nth-child(3) span{
+//       display: block;
+//       width: 100%;
+//       text-align: center;
+//       font-size: 11px;
+//       margin: 0 auto;
+//       text-transform: uppercase;
+//       max-width: 75px;
+//       word-wrap: break-word;
+//       white-space: normal;
+//       letter-spacing: 0.3px;
+//       line-height: 14px;
+//     }
+
+
+//     #check-in-sec .behavior_card_outer_sec .behavior_card_outer:nth-child(1) .active, #check-in-sec .behavior_card_outer_sec .behavior_card_outer:nth-child(2) .active, #check-in-sec .behavior_card_outer_sec .behavior_card_outer:nth-child(3) .active, #check-in-sec .behavior_card_outer_sec .behavior_card_outer .inform-active{
+//       width: 87px;
+//       min-height: 110px;
+//       margin: 0 auto;
+//       border-radius: 3px;
+//       opacity: 1;
+//       background: #fff;
+      
+//     }
+//     #check-in-sec .behavior_card_outer_sec .behavior_card_outer .inform-active{
+//       box-shadow: 0px 1px 17px 1px rgba(125, 125, 125, 0.25);
+//       border: 1.2px solid rgba(125, 125, 125, 0.75);
+//     }
+//     #check-in-sec .btn_sec{
+//       margin: 7vh 0 0 0;
+//     }
+//     #check-in-sec .btn_sec .back_btn, #check-in-sec .btn_sec .btn-active.next_btn{
+//       min-width: 110px;
+//       font-size: 14px;
+//     }
+//     #check-in-sec .btn_sec .next_btn{
+//       min-width: 110px;
+//       font-size: 14px;
+//     }
+// }
+
+
+
+
+
+
+
+
+
+
+// @media only screen and(max-width:576px){
+//   #check-in-sec .behavior_card_outer_sec .behavior_card_outer .behavior_card{
+//     margin: 10px auto;
+//     }
+//     #check-in-sec .behavior_card_outer_sec .behavior_card_outer .behavior_card.active{
+//       margin: 10px auto;
+//     }
+//     #check-in-sec .check-in-content h3 span{
+//       width: 100%;
+//       display: block;
+//     }
+// }
+

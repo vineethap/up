@@ -1,0 +1,225 @@
+<div *ngIf="!nextbutton && thisObj" fxLayout="row" fxLayoutWrap  id="check-in-start">
+<div class="outer_sec"  fxFlex="100">
+
+<div fxLayout="row" fxLayoutWrap class="outer">
+  <div fxFlex="100" class="check_in_head">
+      <h3>Employee Selection</h3>
+  </div>
+
+<div fxFlex="100">
+    <form class="input_sec" novalidate [formGroup]="checkinStart">
+
+  <div class="recap_form">
+      <div fxLayout="row" fxLayoutWrap>
+  <div fxFlex.gt-sm="50" fxFlex.xs="100" fxLayoutWrap>
+      <div class="form_field" fxFlex="100">
+          <!-- <mat-form-field class="checkin-full-width"> -->
+          <label fxFlex.gt-sm="80" fxFlexOffset.sm="10" fxFlexOffset.xs="10" fxFlex.xs="80" >
+            <input fxFlex.gt-sm="100" fxFlex.xs="100" formControlName="name" type="text" (keyup)="updateFilter($event)" [matAutocomplete]="auto" placeholder="Employee Name" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="addTokenEnd($event)" [matChipInputAddOnBlur]="false" [(ngModel)]="empTextFiled" #chip>
+            <img src='../../../../../../assets/images/check-in/user.png'>
+          </label>
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="addSelected($event,chip.value)">
+              <mat-option *ngFor="let option of employees1 |unique:'id'" (click)="getEmployeeId(option.id)" [value]="[option.first_name , option.id] ">
+                <span>{{ option.first_name }}</span>
+              </mat-option>
+            </mat-autocomplete>
+          <!-- </mat-form-field> -->
+        </div>  
+
+</div>
+
+          <!-- <div class="enter_name">
+        
+     
+            
+          <input formControlName="name" type="text" (keyup)="updateFilter($event)" [matAutocomplete]="auto" placeholder="Employee Name" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="addTokenEnd($event)" [matChipInputAddOnBlur]="false" [(ngModel)]="empTextFiled" #chip>
+          <span><img src="assets/images/check-in/user.png"/> Employee Name</span>
+          </div>
+       
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="addSelected($event,chip.value)">
+          <mat-option *ngFor="let option of employees1 |unique:'id'" (click)="getEmployeeId(option.id)" [value]="[option.first_name , option.id] ">
+            <span>{{ option.first_name }}</span>
+          </mat-option>
+        </mat-autocomplete> -->
+   
+ 
+
+      <div class="form_field" fxFlex.gt-sm="50" fxFlex.xs="100">
+          <label  fxFlex.gt-sm="80" fxFlexOffset.sm="10" fxFlexOffset.xs="10" fxFlex.xs="80" >
+                      <!-- <mat-form-field class="spacebtwn"> -->
+          <input matInput fxFlex.gt-sm="100" fxFlex.xs="100" [matDatepicker]="picker2" placeholder="Date" formControlName="date">
+          <img matSuffix  class="calender" src="../../../../../../assets/images/check-in/calender.png"/>
+          <mat-datepicker-toggle matSuffix  [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+          <!-- </mat-form-field> -->
+        </label>
+        </div>
+
+      </div>
+      
+    </div>
+
+    <!-- <div class="date_selection">
+      <span><img src="assets/images/check-in/calender.png"/> {{checkinStart.value.date | date:'MM/dd/yy'}}</span>
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker2" placeholder="Date" formControlName="date">
+
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+    </div> -->
+    
+
+
+<div fxLayout="row" class="chip_list_outer" fxLayoutWrap>
+  <div fxFlex.gt-xs="33" fxFlex.xs="100" class="chip_list" *ngFor="let selected of multiSelectedEmp">
+      <mat-chip-list #chipList>
+          <mat-chip   (remove)="remove(selected)">
+            {{ selected.name}}
+           <span><i  matChipRemove class="material-icons">clear</i></span> 
+          </mat-chip>
+        </mat-chip-list>
+  </div>
+</div>
+
+
+
+</form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div fxFlex="100">
+  <div class="btn_sec" fxLayout="row" fxLayoutWrap>
+      <div fxFlex="50" class="btns_next">
+        <button [ngClass]="{'btn-active': multiSelectedEmp.length==0 }" mat-raised-button class="next_btn"  aria-label="SAVE" 
+            (click)="$event.preventDefault();createDetails($event)" [disabled]="multiSelectedEmp.length==0">
+          Next
+        </button>
+      </div>
+      <div fxFlex="50" class="btns_save">
+        <button  [ngClass]="{'btn-active': multiSelectedEmp.length ==0 ||multiSelectedEmp.length >= 2 }" mat-raised-button class="next_btn" aria-label="SAVE" 
+            (click)="$event.preventDefault();getSavedDetails($event)" [disabled]="multiSelectedEmp.length ==0 ||
+                multiSelectedEmp.length >= 2">
+              Saved
+    </button>
+      </div>
+    </div>
+  </div>
+   
+</div>
+
+
+
+
+
+
+
+  </div>
+</div>
+
+
+
+
+   <!-- <div fxLayout="row" fxLayoutWrap>
+    <div fxFlex="100">
+    
+      <div fxLayout="row" fxLayoutWrap>
+          <form novalidate [formGroup]="checkinStart">
+       
+        <div fxFlex="100">
+            <h3>Employee Selection</h3>
+        </div>
+       
+<div fxLayout="row" fxLayoutWrap>
+<div fxFlex.gt-xs="50" fxFlex.xs="100">
+
+        <mat-form-field>
+          <mat-chip-list>
+            
+            <div>
+           
+              <input formControlName="name" placeholder="name" type="text" (keyup)="updateFilter($event)" [matAutocomplete]="auto" placeholder="Employee Name" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="addTokenEnd($event)" [matChipInputAddOnBlur]="false" [(ngModel)]="empTextFiled" #chip>
+            </div>
+          </mat-chip-list>
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="addSelected($event,chip.value)">
+            <mat-option *ngFor="let option of employees1 |unique:'id'" (click)="getEmployeeId(option.id)" [value]="[option.first_name , option.id] ">
+              <span>{{ option.first_name }}</span>
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+    </div>
+     
+        
+<div fxFlex.gt-xs="50" fxFlex.xs="100">
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker2" placeholder="Date" formControlName="date">
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+        </div>
+  </div>
+      <div fxLayout="row">
+       
+          <mat-chip-list #chipList>
+            <mat-chip *ngFor="let selected of multiSelectedEmp" (remove)="remove(selected)">
+              {{ selected.name}}
+              <mat-icon matChipRemove>cancel</mat-icon>
+            </mat-chip>
+          </mat-chip-list>
+       
+      </div>
+     
+     
+      <div class="btn_sec" fxLayout="row">
+        <button [ngClass]="{'btn-active': multiSelectedEmp.length==0 }" mat-raised-button class="next_btn"  aria-label="SAVE" 
+            (click)="$event.preventDefault();createDetails($event)" [disabled]="multiSelectedEmp.length==0">
+          Next
+        </button>
+
+        <button  [ngClass]="{'btn-active': multiSelectedEmp.length ==0 ||multiSelectedEmp.length >= 2 }" mat-raised-button class="next_btn" aria-label="SAVE" 
+            (click)="$event.preventDefault();getSavedDetails($event)" [disabled]="multiSelectedEmp.length ==0 ||
+                multiSelectedEmp.length >= 2">
+              Saved
+    </button>
+      </div>
+
+
+    </form>
+    </div>
+   
+  </div>
+  </div>
+</mat-card> -->
+
+
+
+
+
+
+
+
+
+<app-select-checkintype *ngIf="nextbutton && !back" [employee]="employe_data" 
+    [informSelectedEmployee]="multiSelectedEmp" [selected_type]="selected_type"
+    [topic_back]="topic_back" [back_enable]="back_enable"
+    [insertCheckinDetails] = "insertCheckinDetails">
+
+</app-select-checkintype>
+
+<div *ngIf="nextbutton1">
+<app-saved-confirmation-page  [employee]="employe_data" 
+  [savedCheckinDetails] = "savedCheckinDetails"> </app-saved-confirmation-page>
+
+</div>
+

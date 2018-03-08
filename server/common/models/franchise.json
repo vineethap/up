@@ -1,0 +1,35 @@
+{
+  "name": "Franchise",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "franchise": {
+      "type": "string"
+    },
+    "franchise_loc": {
+      "type": "string"
+    },
+    "franchise_domain": {
+      "type": "string"
+    },
+    "subscription_id": {
+      "type": "string"
+    },
+    "industry": {
+      "type": "string"
+    },
+    "years_operating": {
+      "type": "number"
+    },
+    "franchised": {
+      "type": "boolean"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

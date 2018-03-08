@@ -1,0 +1,32 @@
+{
+  "name": "Recap",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "member_id": {
+      "type": "string"
+    },
+    "dev_goal": {
+      "type": "string"
+    },
+    "time_frame": {
+      "type": "string"
+    },
+    "plan": {
+      "type": "string"
+    },
+    "manager_id": {
+      "type": "string"
+    },
+    "user_rating": {
+      "type": "number"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

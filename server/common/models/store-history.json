@@ -1,0 +1,29 @@
+{
+  "name": "StoreHistory",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "store_id": {
+      "type": "string"
+    },
+    "manager_id": {
+      "type": "string"
+    },
+    "is_current": {
+      "type": "boolean"
+    },
+    "start_date": {
+      "type": "date"
+    },
+    "end_date": {
+      "type": "date"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

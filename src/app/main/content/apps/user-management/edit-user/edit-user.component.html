@@ -1,0 +1,41 @@
+<div style="width:100%" id="addfranchise">
+  <mat-toolbar mat-dialog-title class="mat-accent m-0">
+    <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+      <span class="title dialog-title">Edit User</span>
+    </div>
+  </mat-toolbar>
+  <div>
+    <form novalidate [formGroup]="editUser" fxFlex>
+      <div mat-dialog-content class="p-24 m-0" perfect-scrollbar fxLayout="row">
+        <mat-input-container fxFlex="50">
+          <input matInput placeholder="Firt Name" formControlName="first_name">
+          <mat-error *ngIf="formErrors.first_name.required">
+            Required
+          </mat-error>
+        </mat-input-container>
+        <mat-input-container class="spacebtwn" fxFlex="100">
+          <input matInput placeholder="Designation" formControlName="designation">
+        </mat-input-container>
+        <mat-input-container class="spacebtwn" fxFlex="100">
+          <input matInput placeholder="Email" formControlName="email">
+          <mat-error *ngIf="formErrors.email.required">
+            Required
+          </mat-error>
+        </mat-input-container>
+        <mat-form-field class="spacebtwn">
+          <mat-select style="width: 211px"  placeholder="Location" formControlName="store_id">
+            <mat-option *ngFor="let loc of rows2" value={{loc.id}}> {{loc.store_loc}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
+        <div>
+          <button mat-raised-button class="save-button mat-accent" aria-label="SAVE" (click)="onSubmit()">
+            Save
+          </button>
+          <button mat-button (click)="dialogRef.close(false)">Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

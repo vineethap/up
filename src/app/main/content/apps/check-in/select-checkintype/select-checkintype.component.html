@@ -1,0 +1,122 @@
+<mat-card *ngIf="!nextbutton && !back" id="check-in-sec"> 
+
+  <!-- <md-card-header>
+  </md-card-header>  -->
+
+  <section class="check-in-content">
+      <!-- <h3>Employee Name: {{selectedEmployee}} Check In For: {{employee.date | date: 'MM/dd/yy'}}</h3> -->
+      <h3>Add your conversation types <span>{{selectedEmployee}} {{employee.date | date: 'MM/dd/yy'}}</span></h3>
+      <!-- <h3>Add your conversation types <span>Matt robinson</span></h3> -->
+    </section> 
+    
+    <div *ngIf="employeeLength==1">
+        <section class="check_in_innerblock">
+          <h3>behavioral feedback</h3>
+        </section>
+    
+        <div fxLayout="row" class="behavior_card_outer_sec" fxLayoutWrap>
+          <div fxFlex.gt-sm="33" fxFlex.sm="33" fxFlex.xs="33" class="behavior_card_outer" *ngFor="let type of type_details2">
+       
+              <div  [ngClass]="{'active': checkinTypeSelection[type.id] == true }" class="behavior_card">
+
+                <mat-checkbox class="selection" (change)="getCheckinTypeName(type)" [(ngModel)]="checkinTypeSelection[type.id]">
+                    <div class="card_icons"><img src="{{baseUrl_type_logo}}{{type.logo}}"/></div>
+                  <span>{{type.checkin_name}}</span>
+                   
+                </mat-checkbox>
+              </div>
+           
+          </div>
+        </div>
+    
+       <!--<mat-radio-group [(ngModel)]="type">
+            <mat-radio-button style="padding: 29px;" *ngFor="let type of type_details2" 
+                [value]="type.id" (click)="getCheckinTypeName(type.checkin_name)">{{type.checkin_name}}
+            </mat-radio-button>
+        </mat-radio-group> -->
+    
+      </div>
+
+  <div>
+    <section class="check_in_innerblock">
+      <h3 class="inform_head">information</h3>
+    </section>   
+
+    <!--<mat-radio-group [(ngModel)]="type">
+          <mat-radio-button style="padding: 29px;" *ngFor="let type of type_details1" 
+          [value]="type.id" (click)="getCheckinTypeName(type.checkin_name)">{{type.checkin_name}}
+          </mat-radio-button>
+    </mat-radio-group> -->
+    <div fxLayout="row" class="behavior_card_outer_sec" fxLayoutWrap>
+      <div fxFlex.gt-sm="33" fxFlex.sm="33" fxFlex.xs="33" class="behavior_card_outer" *ngFor="let type of type_details1">
+       
+         <div [ngClass]="{'inform-active': checkinTypeSelection[type.id] == true }" class="behavior_card">
+            <mat-checkbox [checked]="checkinTypeSelection[type.id]" (change)="getCheckinTypeName(type)" 
+                    [(ngModel)]="checkinTypeSelection[type.id]">
+                   <div class="card_icons"><img src="{{baseUrl_type_logo}}{{type.logo}}"/></div>
+                    <span class="information_head">{{type.checkin_name}}</span>
+           
+            </mat-checkbox>
+         
+          </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- <div fxLayout="row" fxLayoutAlign="end" fxLayoutWrap>
+    
+      <a href="https://www.youtube.com/embed/kr9dkp3NLN4" 
+        target="_blank">
+        <button  mat-raised-button>
+          
+          Get Training Videos
+        </button>
+      </a>
+  </div> -->
+  <!-- "https://www.youtube.com/embed/kr9dkp3NLN4" -->
+  <!-- <div fxLayout="row" fxLayoutAlign="end" fxLayoutWrap>
+    <div *ngIf ="videoShownFlag">  
+      <iframe width="560" height="315" [src]="videoEmbeddedUrl"
+      frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+      <div> <button (click)="closeEmbeddedVideos()" mat-raised-button>
+        Close
+      </button></div>
+
+      
+    </div> -->
+    
+  <!-- </div> -->
+  <div fxLayout="row" class="btn_sec">
+   
+    <button mat-raised-button  class="back_btn"
+        aria-label="SAVE" (click)="$event.preventDefault();backClicked()">
+        Back</button>
+    <button mat-raised-button [ngClass]="{'btn-active': checkinTypeSelectNumber == false }"  class="next_btn mat-accent" aria-label="SAVE" 
+        (click)="$event.preventDefault();selectCheckinType()" 
+    
+        [disabled]="type==undefined && checkinTypeSelectNumber == true">
+        Next
+    </button>
+  </div>
+</mat-card>
+<!-- old code -->
+<!-- <app-start-checkin *ngIf="nextbutton" [selected_type]="selected_item" [employee]="employee"></app-start-checkin>
+  -->
+<!-- ends heres-->
+<!-- new cod -->
+<!-- [subcategory]="subcategory"
+
+  [topic_datas]="topic_datas" [selected_type]="selected_type"  -->
+<app-select-topic [selectedCheckinType] = "selectedCheckinType" *ngIf="nextbutton && !back" 
+       [employee]="employee" [informSelectedEmployee]="informSelectedEmployee" 
+      [topic_back]="topic_back" [back_enable]="back_enable"
+      [insertCheckinDetails] = "insertCheckinDetails">
+</app-select-topic>
+
+<app-start-checkin [employee]="employee" *ngIf="back" [selected_type]="selected_type" 
+  [informSelectedEmployee]="informSelectedEmployee" [topic_back]="topic_back" 
+  [back_enable]="back_enable"> </app-start-checkin>
+  
+<!-- ends here-->

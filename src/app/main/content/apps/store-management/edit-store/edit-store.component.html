@@ -1,0 +1,75 @@
+<div style="width:100%" id="addfranchise">
+  <mat-toolbar mat-dialog-title class="mat-accent m-0">
+    <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+      <span class="title dialog-title">Edit  Store</span>
+    </div>
+  </mat-toolbar>
+  <div>
+    <form novalidate [formGroup]="editStore" fxFlex>
+      <div mat-dialog-content class="p-24 m-0" perfect-scrollbar fxLayout="row">
+        <mat-input-container fxFlex="50">
+          <input matInput placeholder="Store Name" formControlName="store_name">
+          <mat-error *ngIf="formErrors.store_name.required">
+            Required
+          </mat-error>
+        </mat-input-container>
+
+        <mat-input-container fxFlex="50" class="spacebtwn">
+          <input matInput placeholder="Brand" formControlName="brand">
+          <mat-error *ngIf="formErrors.brand.required">
+            Required
+          </mat-error>
+        </mat-input-container>
+        <mat-input-container class="spacebtwn" fxFlex="50">
+          <input matInput placeholder="Store Location" formControlName="store_loc"
+          autocorrect="off" autocapitalize="off" spellcheck="off"
+          type="text" class="form-control" #search >
+        </mat-input-container>
+      </div>
+
+      <!-- <div mat-dialog-content class="p-24 m-0" perfect-scrollbar fxLayout="row">
+        <mat-input-container fxFlex="50">
+          <input matInput placeholder="Store Region" formControlName="store_reg">
+         
+        </mat-input-container>
+        <mat-input-container class="spacebtwn" fxFlex="50">
+          <input matInput placeholder="Store Area" formControlName="store_area">
+          
+        </mat-input-container>
+      </div>
+ -->
+
+     <!--  <div mat-dialog-content class="p-24 m-0" perfect-scrollbar fxLayout="row">
+        <mat-input-container fxFlex="50">
+          <input matInput placeholder="Store Street" formControlName="store_street">
+          
+        </mat-input-container>
+        <mat-input-container class="spacebtwn" fxFlex="50">
+          <input matInput placeholder="Store City" formControlName="store_city">
+         
+        </mat-input-container>
+      </div> -->
+      <!-- <div mat-dialog-content class="p-24 m-0" perfect-scrollbar fxLayout="row">
+        <mat-input-container fxFlex="50">
+          <input matInput placeholder="Store State" formControlName="store_state">
+          
+        </mat-input-container>
+        <mat-input-container class="spacebtwn" fxFlex="50">
+          <input matInput placeholder="Store Zip" formControlName="store_zip"
+          (keypress)="onlyNumberKey($event)">
+         
+        </mat-input-container>
+      </div> -->
+     
+      
+      <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
+        <div>
+          <button mat-raised-button class="save-button mat-accent" aria-label="SAVE" (click)="onSubmit()" >
+            Save
+          </button>
+          <button mat-button (click)="dialogRef.close(false)">Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

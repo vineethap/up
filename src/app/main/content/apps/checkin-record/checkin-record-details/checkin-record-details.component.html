@@ -1,0 +1,35 @@
+<div id="ngx-datatable" class="page-layout simple fullwidth" fusePerfectScrollbar>
+  <div class="header md-accent-bg p-24 h-160" fxLayout="row" fxLayoutAlign="space-between">
+    <div fxLayout="column" fxLayoutAlign="center start">
+      <div class="h2 mt-16">Checkin-in Record details</div>
+    </div>
+  </div>
+  <!-- / HEADER -->
+  <!-- CONTENT -->
+  <div class="content p-24">
+    <mat-list>
+      <div *ngFor="let type of checkin_details">
+        <h3 mat-subheader>{{type.CheckInType.checkin_name}}</h3>
+        <mat-list-item *ngFor="let topic of type.MemberCheckinTopic">
+          <mat-icon mat-list-icon>chevron_right</mat-icon>
+          <h4 mat-line>Topic name: {{topic.Topic.topic_name}}</h4>
+          <p mat-line>Comments: {{topic.comments}} </p>
+          <p mat-line *ngIf="topic.misconduct==1; else elsemisconduct;">Misconduct : Yes </p>
+          <ng-template #elsemisconduct>
+            <p mat-line>Misconduct : No</p>
+          </ng-template>
+          <p mat-line *ngIf="topic.above_beyond==1; else elseAbove;">Abopoove & Beyond : Yes </p>
+          <ng-template #elseAbove>
+            <p mat-line>Abopoove & Beyond : No</p>
+          </ng-template>
+          <p mat-line>Follow up date: {{topic.follow_up_date | date: 'MM/dd/yy'}} </p>
+          <p mat-line *ngIf="topic.expectation==''; else elseExpected;">Expected date: Nill </p>
+          <ng-template #elseExpected>
+            <p mat-line>Expected date: {{topic.expectation | date: 'MM/dd/yy'}} </p>
+          </ng-template>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+      </div>
+    </mat-list>
+  </div>
+</div>

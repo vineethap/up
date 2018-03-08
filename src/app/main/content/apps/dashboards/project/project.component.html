@@ -1,0 +1,213 @@
+<div class="page-layout fullwidth dashboard_section" >
+  <div class="row" fxLayout="row" fxLayoutAlign="start none" fxLayoutWrap>
+      <div class="filter_section" fxFlex="100" fxLayoutalign="start center">
+        <h2>Filter By</h2>
+        <div fxLayout="row" class="filter_form" fxLayoutWrap fxLayoutalign="start center">
+            <div fxFlex.lg="25"  fxFlex.md="calc(50% - 20px)" fxFlex.sm="calc(50% - 10px)" fxFlex.xs="100"  fxLayoutalign="start center">
+              <label>
+                <mat-form-field>
+   <mat-select [(ngModel)]="select1"  name="food">
+
+    <mat-option [value]="1">
+      All Locations
+     </mat-option>
+     
+     <mat-option *ngFor="let l of locations; let i = index"  (click)="getLocations(l)" [value]="l" >
+      {{l.store_loc}}
+     </mat-option>
+     
+   </mat-select>
+ </mat-form-field>
+                <!-- <select>
+                <option value="">Location</option>
+                <option value="">2</option>
+                <option value="">3</option>
+              </select> -->
+
+            </label>
+            </div>
+            <div fxFlex.lg="25"  fxFlex.md="calc(50% - 20px)" fxFlex.sm="calc(50% - 10px)" fxFlex.xs="100" fxLayoutalign="center center"><label>
+              <mat-form-field>
+              <mat-select [(ngModel)]="select2">
+                <mat-option [value]="1" (click)="getNoDays()">
+                Last 7 Days
+                </mat-option>
+                <mat-option [value]="2" (click)="getNoDays()">
+                Last 30 Days
+                </mat-option>
+              </mat-select>
+                </mat-form-field>
+              <!-- <select>
+              <option value="">Lat 7 Days</option>
+              <option value="">2</option>
+              <option value="">3</option>
+            </select> -->
+
+          </label></div> 
+          
+            <div fxFlex.lg="25"  fxFlex.md="calc(50% - 20px)" fxFlex.sm="calc(50% - 10px)" 
+                  fxFlex.xs="100" fxLayoutalign="center center">
+              <label> 
+                <img matSuffix src='../../../../../../assets/images/calendar.png'> 
+                <input [min]="priorDates"  [(ngModel)]= "priorDate" type="text" [matDatepicker]="fromDate" placeholder="From">  
+                <mat-datepicker-toggle matSuffix [for]="fromDate"></mat-datepicker-toggle>
+                <mat-datepicker  (selectedChanged)="selectDateConversation($event)" #fromDate></mat-datepicker>
+              </label>
+            </div>
+
+            <div fxFlex.lg="25"  fxFlex.md="calc(50% - 20px)" fxFlex.sm="calc(50% - 10px)" 
+              fxFlex.xs="100" fxLayoutalign="end center">
+                <label>
+                  <img matSuffix src='../../../../../../assets/images/calendar.png'/>
+                  <input [min]="toDayDates"  [(ngModel)]= "toDayDate" type="text" [matDatepicker]="toDate" placeholder="To">
+                  <mat-datepicker-toggle matSuffix [for]="toDate"></mat-datepicker-toggle>
+                  <mat-datepicker #toDate></mat-datepicker>
+                </label>
+            </div>
+        </div>
+      </div>
+      <div class="progress_data" fxFlex="100" fxLayoutWrap fxLayout="row" fxLayoutAlign="start none" >
+        <div  fxFlex.lg="calc(25% - 30px)" fxFlex.md="calc(50% - 30px)" fxFlex.sm="calc(50% - 30px)" fxFlex.xs="100" fxLayoutalign="start start" fxLayoutWrap>
+          <div class="progress_header" fxFlex="100" fxLayoutalign="start start">
+            <h2>Check-in coverage</h2>
+          </div>
+          <div class="progress_iteam_data" fxFlex="100" fxLayoutalign="start none">
+            <h3>{{this.checkin_coverage}}%</h3>
+            <p>% of Team that Received at least 1 Check-in</p>
+          </div>
+        </div>
+        <div  fxFlex.lg="calc(25% - 30px)" fxFlex.md="calc(50% - 30px)" fxFlex.sm="calc(50% - 30px)" fxFlex.xs="100" fxLayoutalign="center start" fxLayoutWrap>
+          <div class="progress_header" fxFlex="100" fxLayoutalign="start start">
+            <h2>Active Tags <span class="tags">Recognize</span></h2>
+          </div>
+          <div class="progress_iteam_data" fxFlex="100" fxLayoutalign="start none">
+            <h3>29</h3>
+            <p>Check-ins performed</p>
+          </div>
+        </div>
+        <div  fxFlex.lg="calc(25% - 30px)" fxFlex.md="calc(50% - 30px)" fxFlex.sm="calc(50% - 30px)" fxFlex.xs="100"  fxLayoutalign="center start" fxLayoutWrap>
+          <div class="progress_header" fxFlex="100" fxLayoutalign="start start">
+            <h2>Follow ups completed</h2>
+          </div>
+          <div class="progress_iteam_data" fxFlex="100" fxLayoutalign="start none">
+            <h3>79%</h3>
+            <p>Follow Ups completed vs. left open</p>
+          </div>
+        </div>
+        <div  fxFlex.lg="calc(25% - 30px)" fxFlex.md="calc(50% - 30px)" fxFlex.sm="calc(50% - 30px)" fxFlex.xs="100" fxLayoutalign="center start" fxLayoutWrap>
+          <div class="progress_header" fxFlex="100" fxLayoutalign="start start">
+            <h2>Employee Pulse</h2>
+          </div>
+          <div class="progress_iteam_data" fxFlex="100" fxLayoutalign="start none">
+            <h3>79%</h3>
+            <p>Follow Ups completed vs. left open</p>
+          </div>
+        </div>
+      </div>
+
+        <div class="conversation_data" fxFlex="100"  fxLayoutAlign="start none" fxLayoutWrap>
+              <div fxFlex.lg="30" fxFlex.lg="calc(50% - 30px)" fxFlex.sm="100" fxFlex.xs="100"  class="conversation_data_left" fxLayoutalign="start none" fxLayoutWrap>
+                  <h2 fxFlex="100" >Conversation completed by type</h2>
+                  <ul class="conversation_type" fxFlex="100" >
+                      <li class="recognize"><span class="tags">Recognize</span> <span class="type_count">{{rec_app}}</span></li>
+                      <li class="correction_mi"><span class="tags">Correction Minor</span> <span class="type_count">{{corr_minor}}</span></li>
+                      <li class="correction_ma"><span class="tags">Correction Major</span> <span class="type_count">{{corr_major}}</span></li>
+                      <li class="info"><span class="tags">News</span> <span class="type_count">{{new_updates}}</span></li>
+                      <li class="info"><span class="tags">Goal</span> <span class="type_count">{{goals}}</span></li>
+                      <li class="info"><span class="tags">Task</span> <span class="type_count">{{task}}</span></li>
+                  </ul>
+
+              </div>
+              <div fxFlex.lg="calc(70% - 30px)" fxFlex.lg="calc(50% - 30px)" fxFlex.sm="100" fxFlex.xs="100" fxLayout="row"  fxLayoutalign="start start" fxLayoutWrap>
+                  <div fxFlex="100" class="conversation_progress_status" fxLayoutalign="start start" fxLayoutWrap>
+                    <h2 fxFlex="100"  fxLayoutalign="start start" >Conversation Mix</h2>
+                    <ul fxFlex="100"  fxLayoutalign="start start"  class="conversation_progress_status">
+                        <li class="recognize" fxFlex="{{(rec_app/total_rec_corr) * 100}}">{{(rec_app/total_rec_corr) * 100}} <span class="tool_tip">Recognize</span></li>
+                        <li class="correction_mi" fxFlex="{{(corr_minor/total_rec_corr) * 100}}">{{(corr_minor/total_rec_corr) * 100}} <span class="tool_tip">Correction Minor</span></li>
+                        <li class="correction_ma" fxFlex="{{(corr_major/total_rec_corr) * 100}}">{{(corr_major/total_rec_corr) * 100}} <span class="tool_tip">Correction Major</span></li>
+                    </ul>
+                  </div>
+                  <div fxFlex.lg="100" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100" class=" progress_value_section" fxLayoutWrap fxLayoutalign="space-between start" >
+                    <div fxFlex.lg="calc(50% - 30px)" fxFlex.lg="calc(50% - 30px)" fxFlex.sm="calc(50% - 30px)" fxFlex.xs="100" fxLayoutalign="center start" class="progress_value" fxLayoutWrap>
+                      <div class="progress_value_header" fxFlex="100" fxLayoutalign="start start">
+                        <h2>Trends</h2>
+                      </div>
+                      <div class="" fxFlex="100" class="progress_value_details" fxLayoutalign="start none">
+                          <div fxFlex="70">
+                              <p class="topic_progress_value">Topic: Attendance</p>
+                              <p class="">In the last 30 days</p>
+                          </div>
+                          <div fxFlex="30" class="progress_status_value pos_value"><img src='../../../../../../assets/images/+ve.svg'>
+                            56%
+                          </div>
+                      </div>
+                  </div>
+
+                  <div fxFlex.lg="calc(50% - 30px)" fxFlex.lg="calc(50% - 30px)" fxFlex.sm="calc(50% - 30px)" fxFlex.xs="100" fxLayoutalign="end start" class="progress_value" fxLayoutWrap>
+                    <div class="progress_value_header" fxFlex="100" fxLayoutalign="start start">
+                      <h2>Trends</h2>
+                    </div>
+                    <div class="" fxFlex="100" class="progress_value_details" fxLayoutalign="start none">
+                        <div fxFlex="70">
+                            <p class="topic_progress_value">Topic: Attendance</p>
+                            <p class="">In the last 30 days</p>
+                        </div>
+                        <div fxFlex="30" class="progress_status_value neg_value"><img src='../../../../../../assets/images/-ve.svg'>
+                          56%
+                        </div>
+                    </div>
+                </div>
+              </div>
+        </div>
+  </div>
+  <div class="notifications" fxLayout="row" fxLayoutAlign="start center" fxLayoutWrap>
+      <div class="notify_header" fxFlex="100" >
+          <h2>Notifications & Upcoming Reminders</h2>
+      </div>
+      <ul fxFlex="100" fxLayoutWrap>
+          <li fxFlex="100" > <span fxFlex.lg="10" fxFlexOffset.xs="10px"  fxFlexOffset.lg="15px" fxFlexOffset.md="15px" fxFlexOffset.sm="15px"  fxFlex.md="40px" fxFlex.sm="40px" fxFlex.xs="40px" class="user_img_notify">
+            <img src="http://meemo-tec.com/img/team/profile_male.jpg"></span>
+            <p fxFlex.lg="calc(100% - 230px)" fxFlex.md="calc(100% - 280px)" fxFlex.sm="calc(100% - 280px)" fxFlex.xs="calc(100% - 200px)">It has been 20 days since your last Recap! </p>
+            <span fxFlex.lg="120px" fxFlex.md="170px" fxFlex.sm="170px" fxFlexOffset.xs="0" fxFlex.xs="90px"class="btn_primary">Recap</span> </li>
+          <!-- <li fxFlex="100" fxLayoutWrap> <span fxFlex.lg="10" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100" class="user_img_notify"><img src="http://meemo-tec.com/img/team/profile_male.jpg"></span> <p fxFlex.lg="70" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100"> <span class="recognize_color">Recognition & Appreciation </span>It has been 20 days since your last Recap! </p> <span fxFlex.lg="15" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100" class="btn_primary">Recap</span> </li>
+          <li fxFlex="100" fxLayoutWrap> <span fxFlex.lg="10" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100" class="user_img_notify"><img src="http://meemo-tec.com/img/team/profile_male.jpg"></span> <p fxFlex.lg="70" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100"> <span class="correction_mi_color">Recognition & Appreciation </span>It has been 20 days since your last Recap! </p> <span fxFlex.lg="15" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100" class="btn_primary">Recap</span> </li>
+          <li fxFlex="100" fxLayoutWrap> <span fxFlex.lg="10" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100" class="user_img_notify"><img src="http://meemo-tec.com/img/team/profile_male.jpg"></span> <p fxFlex.lg="70" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100"> <span class="correction_ma_color">Recognition & Appreciation </span>It has been 20 days since your last Recap! </p> <span fxFlex.lg="15" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100" class="btn_primary">Recap</span> </li>
+          <li fxFlex="100" fxLayoutWrap> <span fxFlex.lg="10" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100" class="user_img_notify"><img src="http://meemo-tec.com/img/team/profile_male.jpg"></span> <p fxFlex.lg="70" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100"> <span class="info_color">Recognition & Appreciation </span>It has been 20 days since your last Recap! </p> <span fxFlex.lg="15" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100" class="btn_primary">Recap</span> </li> -->
+
+      </ul>
+
+       <!-- <ul fxFlex="100">
+          <li *ngFor = "let checkinevent of dashboardsCheckinDetails">
+
+            <span fxFlex="10" class="user_img_notify">
+              <img src="http://meemo-tec.com/img/team/profile_male.jpg">
+            </span>
+            <p fxFlex="20">
+                <span class="checkin_type_class">
+                  {{checkinevent.checkin_name}}</span></p> 
+
+            <p fxFlex="20">
+                Checkin performed for {{checkinevent.member}} </p>
+
+            <p fxFlex="15">
+                  with follow up on
+                    {{checkinevent.follow_up_date | date: 'MM/dd/yy'}} </p>
+
+            <p fxFlex="15" *ngIf="checkinevent.expected_date != undefined">
+                  with expected improvement on
+                    {{checkinevent.expected_date | date: 'MM/dd/yy'}} </p>
+
+            <p fxFlex="15" *ngIf="checkinevent.start_date != undefined">
+                  starting on
+                    {{checkinevent.start_date | date: 'MM/dd/yy'}} </p>
+
+            <p fxFlex="15" *ngIf="checkinevent.end_date != undefined">
+                  ending on
+                    {{checkinevent.end_date | date: 'MM/dd/yy'}} </p>
+
+           <span fxFlex="15" class="btn_primary" 
+                  (click) = "gotoCheckin(checkinevent.checkin_id)" >Checkin</span>
+          </li> 
+      </ul>  -->
+  </div>
+</div>

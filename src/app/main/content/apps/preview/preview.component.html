@@ -1,0 +1,39 @@
+<div id="ngx-datatable" class="page-layout simple fullwidth" fusePerfectScrollbar>
+  <!-- HEADER -->
+  <div class="header md-accent-bg p-24 h-160" fxLayout="row" fxLayoutAlign="space-between">
+    <div fxLayout="column" fxLayoutAlign="center start">
+      <div class="h2 mt-16">Preview of uploaded csv</div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="start center" *ngIf="!already_exists">
+      <button mat-raised-button (click)="addUser()">
+        <!-- <mat-icon>add</mat-icon> -->
+        <span>Save</span>
+      </button>
+    </div>
+  </div>
+  <!-- / HEADER -->
+  <!-- CONTENT -->
+  <div class="content p-24" *ngIf="!already_exists">
+    <ngx-datatable class="material" [rows]="rows" [loadingIndicator]="loadingIndicator" [columnMode]="'force'" [headerHeight]="48" [footerHeight]="56" [rowHeight]="'auto'" [scrollbarH]="true" [reorderable]="reorderable" [limit]="10">
+      <ngx-datatable-column name="Name" prop="Name">
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Location" prop="Location">
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Designation" prop="Designation">
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Email" prop="email">
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Actions">
+        <ng-template ngx-datatable-cell-template let-row="row" let-value="value" let-i="index">
+          <i class="material-icons" (click)=editUser(row) matTooltip="Edit">mode_edit</i>
+          <span class="iconspacing"></span>
+          <i class="material-icons" (click)=deleteUser(row) matTooltip="Delete">delete</i>
+          <span class="iconspacing"></span>
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </div>
+  <div *ngIf="already_exists" style="padding: 79px;padding-left: 25%;font-size: 21px;">
+ <span > To view the preview, please remove duplicate emails before uploading!! </span>
+  </div>
+</div>

@@ -1,0 +1,157 @@
+@import 'src/app/core/scss/fuse';
+@import url(https://fonts.googleapis.com/css?family=Dosis);
+
+body{
+    font-family: 'Dosis', sans-serif;
+}
+
+%btn{
+    border-radius: 3em;
+    border: 1px solid #17c7c0;
+    font-weight: 100;
+    letter-spacing: 0.5px;
+    min-width: 114px;
+   box-shadow: none;
+    font-size: 16px;
+}
+.avatar_photo{
+  color: #FFFFFF;
+border: 2px solid rgb(48, 214, 206);
+background: white;
+}
+
+$toolbar-color:#01b2aa;
+.mat-toolbar.checkin_toolbar{
+    background: $toolbar-color;
+    .check_in_btn{
+
+            background: #12b7b0;
+            color: #fff;
+            margin: 0 15px 0 15px;
+           @extend %btn;
+           .mat-button-focus-overlay{
+            background:transparent;
+           }
+        &:hover{
+            background: #17c7c0!important;
+            color: #fff;
+
+        }
+        &:focus{
+            background: #17c7c0!important;
+        }
+          }
+
+          .recap{
+            background: #12b7b0;
+            color: #fff;
+        @extend %btn;
+            margin: 0 15px 0 0;
+            font-size: 17px;
+            .mat-button-focus-overlay{
+                background:transparent;
+
+               }
+               &:hover{
+                background: #17c7c0!important;
+                color: #fff;
+
+            }
+            &:focus{
+                background: #17c7c0!important;
+            }
+
+
+          }
+          .notification{
+            width: 44px;
+            padding: 10px;
+            line-height: 20px;
+          }
+
+}
+
+
+:host {
+    position: relative;
+    display: flex;
+    flex: 0 0 auto;
+    z-index: 4;
+
+    &.below {
+        z-index: 2;
+    }
+
+    .mat-toolbar {
+        // background: inherit;
+        // color: inherit;
+        .logo
+        {
+        img
+            {
+            width:65px;
+            height:40px;
+            }
+        }
+        .head-franch
+    {
+        padding:20px 0px;
+        .head-franchname
+            {
+                font-size:20px;
+                color:rgb(137,208,13)
+            }
+        .head-franchplce
+        {
+            color:rgb(76,81,88);
+            font-size:12px;
+        }
+    }
+    }
+
+    .loading-spinner {
+        width: 32px;
+        height: 32px;
+    }
+
+    .user-button,
+    .search-button,
+    .language-button,
+    .quick-panel-toggle-button {
+        min-width: 64px;
+        height: 64px;
+
+        @include media-breakpoint-down('xs') {
+            height: 56px;
+        }
+    }
+
+    .toggle-button-navbar {
+        min-width: 56px;
+        height: 56px;
+    }
+
+    .toolbar-separator {
+        height: 64px;
+        width: 1px;
+        background: rgba(0, 0, 0, .12);
+
+        @include media-breakpoint-down('xs') {
+            height: 56px;
+        }
+
+    }
+}
+@include media-breakpoint-down('xs') {
+  .mat-toolbar.checkin_toolbar .check_in_btn ,  .mat-toolbar.checkin_toolbar .recap  {
+    margin: 0 5px 0 5px;
+    padding: 0 5px;
+    font-size: 13px;
+    min-width: 80px;
+    height: 30px;
+    line-height: 20px;
+  }
+  .user-button.mat-button {
+    padding-left: 0;
+  }
+}

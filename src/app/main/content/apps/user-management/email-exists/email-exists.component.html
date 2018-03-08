@@ -1,0 +1,42 @@
+<mat-toolbar mat-dialog-title class="mat-accent m-0">
+  <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+    <span class="title dialog-title" *ngIf="data.email_details">Existing Emails</span>
+    <span class="title dialog-title" *ngIf="data.location"> Location Validation</span>
+  </div>
+</mat-toolbar>
+<div>
+  <form fxFlex>
+
+    <div *ngIf="data.email_details">
+      <div>
+      <p> You have one or more entries created with following email address. </p>
+      <p>Please edit or remove duplicates to continue.</p>
+      </div>
+      <div mat-dialog-content class="p-24 m-0" perfect-scrollbar *ngFor="let email of data.email_details">
+        &bull;<span style="margin-left: 10px">{{email}}</span>
+      </div>
+    </div>
+
+
+    <div *ngIf="data.location">
+      <div *ngIf="!flag">
+        Please change the following location.
+      </div>
+      <div *ngIf="!flag">
+      <div mat-dialog-content class="p-24 m-0" perfect-scrollbar *ngFor="let loc of data.location" >
+        &bull;<span style="margin-left: 10px">{{loc.Location}}</span>
+     
+      </div>
+      </div>
+
+     <div style="padding: 19px" *ngIf="flag">Your location can't be blank.</div>
+    </div>
+
+
+    <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
+      <div>
+        <button mat-raised-button class="save-button mat-accent" (click)="dialogRef.close(false)">Ok</button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,41 @@
+{
+  "name": "FollowUp",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "is_critical": {
+      "type": "boolean"
+    },
+    "followup_date": {
+      "type": "date"
+    },
+    "review_date": {
+      "type": "date"
+    },
+    "corrective_action": {
+      "type": "string"
+    },
+    "expectation": {
+      "type": "string"
+    },
+    "checkin_id": {
+      "type": "string"
+    },
+    "pip_id": {
+      "type": "string"
+    },
+    "occurrance": {
+      "type": "string"
+    },
+    "user_rating": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

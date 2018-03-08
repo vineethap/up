@@ -1,0 +1,35 @@
+{
+  "name": "UserPermission",
+  "plural": "UserPermissions",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "action": {
+      "type": "string",
+      "required": true,
+      "default": " "
+    },
+    "action_desc": {
+      "type": "string",
+      "required": true,
+      "default": " "
+    },
+    "role_type": {
+      "type": [
+        "string"
+      ],
+      "required": true,
+      "default": [
+        "",
+        ""
+      ]
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

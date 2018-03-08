@@ -1,0 +1,142 @@
+<div style="width:100%">
+  <mat-toolbar mat-dialog-title class="mat-accent m-0">
+    <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+      <span class="title dialog-title">Progressive Corrective Action</span>
+    </div>
+  </mat-toolbar>
+  <div>
+    <form novalidate [formGroup]="followup" fxFlex>
+      <div mat-dialog-content class="p-24 m-0" perfect-scrollbar fxLayout="column">
+        
+        <div fxLayout="row">
+            Topic Name: {{typeName}} Date: {{selectedDate}}
+        </div>
+
+        <div class="spaceAbove" fxLayout="row">
+          <div class="spaceRight"> Pip Notes: </div>
+          <mat-checkbox class="spaceRight" [value]="noAction" (change)="selectChange($event)"
+           name="No Action">No Action</mat-checkbox>
+          <mat-checkbox [value] ="coachingCounselling" (change)="selectChange($event)" 
+          name="Coaching/Counselling">Coaching/Counselling</mat-checkbox>
+        </div>
+
+        <div class="spaceAbove" fxLayout="row">
+          <mat-checkbox class="spaceRight" (change)="selectChange($event)"
+          name="Training/Retrain">Training/Retrain</mat-checkbox>
+          <mat-checkbox (change)="selectChange($event)" 
+          name="Review of Applicable Policies"> Review of Applicable Policies</mat-checkbox>
+        </div>
+
+        <div class="spaceAbove" fxLayout="row">
+          <mat-checkbox class="spaceRight" (change)="selectChange($event)" 
+          name="Verbal Warning">Verbal Warning</mat-checkbox>
+          <mat-checkbox (change)="selectChange($event)" 
+          name="Written Warning">Written Warning</mat-checkbox> 
+        </div>
+  
+        <div class="spaceAbove" fxLayout="row">
+          <mat-checkbox class="spaceRight" (change)="selectChange($event)" 
+          name="Compensation Adjustment">Compensation Adjustment</mat-checkbox>
+          <mat-checkbox (change)="selectChange($event)" 
+          name="Demotion">Demotion</mat-checkbox>
+        </div>
+  
+        <div class="spaceAbove" fxLayout="row">  
+          <mat-checkbox class="spaceRight" (change)="selectChange($event)" 
+          name="Final Warning">Final Warning</mat-checkbox>
+          <mat-checkbox class="spaceRight" (change)="selectChange($event)" 
+          name="Investigation">Investigation</mat-checkbox>
+        </div>
+
+        <div class="spaceAbove" fxLayout="row">  
+          <mat-checkbox class="spaceRight" (change)="selectChange($event)" 
+          name="Suspension">Suspension</mat-checkbox>
+          <mat-checkbox (change)="selectChange($event)" 
+          name="Termination">Termination</mat-checkbox>
+        </div>
+  
+        <div class="spaceAbove" fxLayout="row">
+          <mat-checkbox (change)="selectChange($event)" 
+          name="Other">Other</mat-checkbox>
+        </div>
+      
+        <div class="spaceAbove" fxLayout="row">
+          <mat-form-field>
+            <textarea matInput placeholder="Few notes" matTextareaAutosize matAutosizeMinRows="2"
+                #box matAutosizeMaxRows="5" (keydown.enter)="addNotes($event,box.value)"></textarea>
+            </mat-form-field>
+        </div>
+
+        <div class="spaceAbove" fxLayout="row">
+          <mat-form-field>
+            <mat-select [(value)]="selectedDays" style="width: 211px"  placeholder="Select Days">
+              <mat-option value="30"> 30 Days </mat-option>
+              <mat-option value="60"> 60 Days </mat-option>
+              <mat-option value="90"> 90 Days </mat-option>
+              <mat-option value="180"> 6 Months </mat-option>
+              <mat-option value="360"> 12 Months </mat-option>
+              <mat-option value="indefinite"> Indefinite </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+      </div>
+      
+      <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
+        <div>
+          <button mat-raised-button class="save-button mat-accent" aria-label="SAVE" (click)="createFollowUp()">
+            Save
+          </button>
+          <button mat-button (click)="dialogRef.close(false)">Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+
+
+<!-- <div fxLayout="row">
+        <div>Select Date</div>
+        <div>
+          <mat-select [(value)]="selectedDay" placeholder="Days">
+            <mat-option [value]="30">30 Days</mat-option>
+            <mat-option [value]="60">60 Days</mat-option>
+            <mat-option [value]="90">90 Days</mat-option>
+            <mat-option [value]="180">6 Months</mat-option>
+            <mat-option [value]="360">12 Months</mat-option>
+            <mat-option [value]="indefinite">Indefinite</mat-option>
+          </mat-select>
+        </div>
+      </div>
+    </div>
+       <div fxLayout="row">
+        <mat-checkbox (change)="selecCritical(critical)" formControlName="critical" 
+            name="critical">Critical Period</mat-checkbox>
+      </div>
+       <div fxLayout="column">
+        <mat-form-field fxFlex="100" *ngIf="followup.value.critical">
+          <textarea matInput placeholder="Write Expectations" formControlName="expectations">
+          </textarea>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column">
+        <mat-checkbox (change)="selecFuture(future)" formControlName="future" name="future">Followup</mat-checkbox>
+      </div>
+      <div fxLayout="column" *ngIf="followup.value.future">
+        <mat-form-field class="spacebtwn">
+          <input matInput [matDatepicker]="picker2" placeholder="Date" formControlName="date">
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+      </div> -->
+     <!--  <button mat-raised-button class="save-button mat-accent" aria-label="SAVE" (click)="createFollowUp()">
+        Save
+      </button>
+      <button mat-button (click)="dialogRef.close(false)">Cancel</button>
+    </form>
+  </div>
+</mat-card>
+ --> 

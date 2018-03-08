@@ -1,0 +1,121 @@
+<div style="width:600px" id="addfranchise" *ngIf="data.franchisedetails">
+  <mat-toolbar mat-dialog-title class="mat-accent m-0">
+    <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+      <span class="title dialog-title">Profile Settings</span>
+    </div>
+  </mat-toolbar>
+  <div>
+    <form novalidate [formGroup]="newFranchise" fxFlex>
+      <div mat-dialog-content class="p-24 m-0" perfect-scrollbar fxLayout="row">
+        <mat-form-field fxFlex="100">
+          <input matInput placeholder="Name *" formControlName="companyname" (blur)="checkFranchiseName()">
+          <mat-error *ngIf="formErrors.companyname.required">
+            Required
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <span class="already_exists" *ngIf="already_exists">Company Name Already Exists</span>
+      <div mat-dialog-content class="p-24 m-0" perfect-scrollbar fxLayout="row">
+        <mat-form-field fxFlex="100">
+          <input matInput placeholder="Email *" formControlName="email">
+          <mat-error *ngIf="formErrors.email.required">
+            Required
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div mat-dialog-content class="p-24 m-0" perfect-scrollbar fxLayout="row">
+        <mat-form-field fxFlex="45">
+          <input matInput placeholder="Years Of Operating" formControlName="years_operating" (keypress)="validate(event)">
+        </mat-form-field>
+        <mat-form-field style="margin-left: 10%;" fxFlex="45">
+          <input matInput placeholder="Location" formControlName="location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search>
+        </mat-form-field>
+      </div>
+      <div mat-dialog-content class="p-24 m-0" perfect-scrollbar fxLayout="row">
+        <mat-form-field>
+          <mat-select placeholder="Industry" formControlName="Industry">
+            <mat-option *ngFor="let industry of industry" value={{industry.id}}>
+              {{industry.Industry}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row">
+        <div class="file-uploader">
+          <input hidden type="file" #fileInput (change)="fileChange($event)" accept="image/*" />
+          <div class="add-file-button add_btn_top" (click)="fileInput.click()" aria-label="Add file">
+            Upload Logo
+          </div>
+        </div>
+        <img [src]="logourl" class="imagelogo" *ngIf="new_file_name==undefined">
+        <img [src]="logourl2" class="imagelogo" *ngIf="new_file_name!=undefined">
+      </div>
+      <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
+        <div>
+          <button mat-raised-button class="save-button mat-accent" aria-label="SAVE" (click)="createFranchiseProfile()" [disabled]="newFranchise.invalid">
+            Create
+          </button>
+          <button mat-button (click)="dialogRef.close(false)">Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div style="width:600px" id="addfranchise" *ngIf="data.memberdetails">
+  <mat-toolbar mat-dialog-title class="mat-accent m-0">
+    <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+      <span class="title dialog-title">Add Franchise</span>
+    </div>
+  </mat-toolbar>
+  <div>
+    <form novalidate [formGroup]="memberProfile" fxFlex>
+      <div mat-dialog-content class="p-24 m-0" perfect-scrollbar fxLayout="row">
+        <mat-input-container fxFlex="100">
+          <input matInput placeholder="First Name" formControlName="first_name">
+          <mat-error *ngIf="formErrors.first_name.required">
+            Required
+          </mat-error>
+        </mat-input-container>
+      </div>
+      <div mat-dialog-content class="p-24 m-0" perfect-scrollbar fxLayout="row">
+        <mat-input-container class="spacebtwn" fxFlex="100">
+          <input matInput placeholder="Designation" formControlName="designation">
+        </mat-input-container>
+      </div>
+      <div mat-dialog-content class="p-24 m-0" perfect-scrollbar fxLayout="row">
+        <mat-input-container class="spacebtwn" fxFlex="100">
+          <input matInput placeholder="Email" formControlName="email">
+          <mat-error *ngIf="formErrors.email.required">
+            Required
+          </mat-error>
+        </mat-input-container>
+      </div>
+      <div mat-dialog-content class="p-24 m-0" perfect-scrollbar fxLayout="row">
+        <mat-form-field>
+          <mat-select style="width: 211px" placeholder="Location" formControlName="location">
+            <mat-option *ngFor="let loc of rows2" value={{loc.store_loc}}> {{loc.store_loc}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      
+      <div fxLayout="row">
+        <div class="file-uploader">
+          <input hidden type="file" #fileInput (change)="fileChange($event)" accept="image/*" />
+          <div class="add-file-button add_btn_top" (click)="fileInput.click()" aria-label="Add file">
+            Upload Logo
+          </div>
+        </div>
+        <img [src]="logourl" class="imagelogo" *ngIf="new_file_name==undefined">
+        <img [src]="logourl2" class="imagelogo" *ngIf="new_file_name!=undefined">
+      </div>
+      
+      <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
+        <div>
+          <button mat-raised-button class="save-button mat-accent" aria-label="SAVE" (click)="createMemberProfile()">
+            Save
+          </button>
+          <button mat-button (click)="dialogRef.close(false)">Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

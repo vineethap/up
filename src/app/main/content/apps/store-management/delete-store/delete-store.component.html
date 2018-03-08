@@ -1,0 +1,25 @@
+<mat-toolbar mat-dialog-title class="mat-accent m-0">
+  <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+    <span class="title dialog-title">Delete Store</span>
+    <!-- <button md-button class="mat-icon-button"
+              (click)="dialogRef.close()"
+              aria-label="Close dialog">
+          <md-icon>close</md-icon>
+      </button> -->
+  </div>
+</mat-toolbar>
+<div>
+  <form fxFlex>
+    <div mat-dialog-content class="p-24 m-0" perfect-scrollbar>
+      Do you want to delete ?
+    </div>
+    <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
+      <div>
+        <button mat-raised-button class="save-button mat-accent" aria-label="SAVE" (click)="onSubmit(data.storedetails)">
+          Ok
+        </button>
+        <button mat-button (click)="dialogRef.close(false)">Cancel</button>
+      </div>
+    </div>
+  </form>
+</div>

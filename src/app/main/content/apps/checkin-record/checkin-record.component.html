@@ -1,0 +1,31 @@
+<div id="ngx-datatable" class="page-layout simple fullwidth" fusePerfectScrollbar>
+  <div class="header md-accent-bg p-24 h-160" fxLayout="row" fxLayoutAlign="space-between">
+    <div fxLayout="column" fxLayoutAlign="center start">
+      <div class="h2 mt-16">Checkin-in Record</div>
+    </div>
+  </div>
+  <!-- / HEADER -->
+  <!-- CONTENT -->
+  <div class="content p-24">
+    <ngx-datatable class="material" [rows]="rows" [loadingIndicator]="loadingIndicator" [columnMode]="'force'" [headerHeight]="48" [footerHeight]="56" [rowHeight]="'auto'" [scrollbarH]="true" [reorderable]="reorderable" [limit]="10">
+      <ngx-datatable-column name="Date">
+        <ng-template ngx-datatable-cell-template let-row="row" let-value="value" let-rowIndex="rowIndex" let-i="index">
+          {{row.checkin_date | date: 'MM/dd/yy'}}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Checkin by">
+        <ng-template ngx-datatable-cell-template let-row="row" let-value="value" let-rowIndex="rowIndex" let-i="index"  >
+          <p *ngIf="row.CreaterFranchise!=undefined; else elsepart;">{{row.CreaterFranchise.company_name }}   ({{row.CreaterFranchise.Role.role }})</p>
+          <ng-template #elsepart>
+          	<p>{{row.CreaterMember.first_name }}  ({{row.CreaterMember.Role.role }})</p>
+          </ng-template>
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Summary">
+        <ng-template ngx-datatable-cell-template let-row="row" let-value="value" let-rowIndex="rowIndex" let-i="index">
+        	<a style="cursor:pointer" (click)="showCheckinDetails(row.id)">Details</a>
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </div>
+</div>

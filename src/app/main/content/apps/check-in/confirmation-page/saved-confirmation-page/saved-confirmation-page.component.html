@@ -1,0 +1,278 @@
+<div *ngIf="nextbutton1 && !show_summary && !back" id="check-in-sec">
+  <mat-card>
+    <section class="check-in-content">
+      <h3>Complete your conversations <span>{{employee.name}}</span></h3>
+    </section>
+    <div fxLayout="row" class="table_sec" fxLayoutWrap>
+      <div fxFlex.gt-sm="50" fxFlex.sm="100" fxFlex.xs="100" class="table_division confirmation_page {{ MemberCheckInType_[0].CheckInType.class}}">
+        <mat-sidenav-container>
+          <mat-sidenav #sidenav>
+            <div *ngIf="checkIn">
+              {{topicNameFirst[passedData]}}
+            </div>
+            <div *ngIf="checkIn">
+              {{resDateString[passedData]}}
+            </div>
+          </mat-sidenav>
+          <mat-accordion *ngFor="let topic of MemberCheckinTopicFirst; let i = index">
+            <mat-expansion-panel class="topic_outer content_inside" [expanded]="firststep === i" (opened)="setFirstStep(i)" hideToggle="true">
+              <mat-expansion-panel-header class="table_head">
+                <mat-panel-title>
+                  <span class="up_arrow"><i class="material-icons">keyboard_arrow_down</i></span>
+                  <span class="topic_head">{{ MemberCheckInType_[0].CheckInType.checkin_name}}</span>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <div fxLayout="row" fxLayoutWrap>
+                <div fxFlex.gt-xs="50" fxFlex.xs="100">
+                  <div class="tags">
+                    {{topic.Topic.topic_name}}
+                  </div>
+                </div>
+                <div fxFlex.gt-xs="50" fxFlex.xs="100" class="check_in_date_outer">
+                  <span class="check_in_date">This happened on: {{employee.date | date: 'MM/dd/yy'}}</span>
+                </div>
+              </div>
+              <div class="comments_outer" *ngIf="MemberCheckInType_[0].CheckInType.checkin_name == 'Recognition & Appreciation' || 
+          MemberCheckInType_[0].CheckInType.checkin_name =='Correction (Major)' ||
+          MemberCheckInType_[0].CheckInType.checkin_name == 'Correction (Minor)' || 
+          MemberCheckInType_[0].CheckInType.checkin_name =='News & Updates'">
+                <textarea class="comment_sec" [(ngModel)]="topic.comments" placeholder="enter comments">
+                </textarea>
+              </div>
+              <div class="comments_outer" *ngIf="MemberCheckInType_[0].CheckInType.checkin_name=='Goals'">
+                <textarea class="comment_sec" placeholder="Goals" [(ngModel)]="topic.comments">
+                </textarea>
+              </div>
+              <div class="comments_outer" *ngIf="MemberCheckInType_[0].CheckInType.checkin_name=='Tasks'">
+                <textarea class="comment_sec" placeholder="Expectations" [(ngModel)]="topic.comments">
+                </textarea>
+              </div>
+              <div class="toggle_sec" fxLayout="row" fxLayoutWrap *ngIf="MemberCheckInType_[0].CheckInType.checkin_name=='Recognition & Appreciation'">
+                <div fxFlex.gt-xs="30" fxFlex.xs="50" class="taggle_txt">
+                  <span>Above and Beyond!</span>
+                </div>
+                <div fxFlex.gt-xs="70" fxFlex.xs="50" class="toggle_btn" fxLayoutAlign="start center">
+                  <mat-slide-toggle [(ngModel)]="aboveBeyond[i]">
+                    <span class="on_btn">yes</span>
+                    <span class="off_btn">no</span>
+                  </mat-slide-toggle>
+                </div>
+              </div>
+              <div class="toggle_sec" fxLayout="row" fxLayoutWrap *ngIf="MemberCheckInType_[0].CheckInType.checkin_name =='Correction (Major)'">
+                <div fxFlex.gt-xs="30" fxFlex.xs="50" class="taggle_txt">
+                  <span>MisConduct</span>
+                </div>
+                <div fxFlex.gt-xs="70" fxFlex.xs="50" class="toggle_btn" fxLayoutAlign="start center">
+                  <mat-slide-toggle [(ngModel)]="misConduct[i]">
+                    <span class="on_btn">yes</span>
+                    <span class="off_btn">no</span>
+                  </mat-slide-toggle>
+                </div>
+              </div>
+              <div class="btm_date_sec" fxLayout="row" fxLayoutWrap>
+                <div fxFlex="100">
+                  <div fxLayout="row" fxLayoutWrap>
+                    <div [ngClass]="{'followup':MemberCheckInType_[0].CheckInType.checkin_name !='Correction (Major)'}" fxFlex.gt-xs="33" fxFlex.xs="100" class="history_sec">
+                      <button type="button" class="history_btn" mat-button (click)="sidenav.open();passData(i)">
+                        <span><img src="assets/images/check-in/history_icon.png"/></span><span class="history_btn_txt">see history</span>
+                      </button>
+                    </div>
+                    <div fxFlex.gt-xs="33" fxFlex.xs="100" class="btm_date_picker_center" *ngIf="MemberCheckInType_[0].CheckInType.checkin_name =='Correction (Major)'">
+                      <span>Improvment by : {{expecteddate1[i] | date: 'MM/dd/yy'}}</span>
+                      <mat-form-field>
+                        <input matInput [matDatepicker]="expecteddate" [(ngModel)]="expecteddate1[i]" placeholder="Expected Improvement Date">
+                        <mat-datepicker-toggle matSuffix [for]="expecteddate"></mat-datepicker-toggle>
+                        <mat-datepicker #expecteddate></mat-datepicker>
+                      </mat-form-field>
+                    </div>
+                    <div [ngClass]="{'followup':MemberCheckInType_[0].CheckInType.checkin_name =='Correction (Major)'}" class="btm_date_picker" fxFlex.gt-xs="33" fxFlex.xs="100">
+                      <span>Follow up : by{{followup1[i] | date: 'MM/dd/yy'}}</span>
+                      <mat-form-field>
+                        <input matInput [matDatepicker]="followup" [(ngModel)]="followup1[i]" placeholder="Follow Up Date">
+                        <mat-datepicker-toggle matSuffix [for]="followup">
+                        </mat-datepicker-toggle>
+                        <mat-datepicker #followup></mat-datepicker>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+                <div class="start_end_sec" fxFlex="100">
+                  <div fxLayout="row" fxLayoutWrap>
+                    <div fxFlex.gt-xs="50" fxFlex.xs="100" class="btm_date_picker_start" *ngIf="MemberCheckInType_[0].CheckInType.checkin_name=='News & Updates' || 
+                MemberCheckInType_[0].CheckInType.checkin_name =='Tasks'
+            || MemberCheckInType_[0].CheckInType.checkin_name =='Goals'">
+                      <span>Start date {{startdate1[i]  | date: 'MM/dd/yy'}}</span>
+                      <mat-form-field>
+                        <input matInput [matDatepicker]="startdate" [(ngModel)]="startdate1[i]" placeholder="Start Date">
+                        <mat-datepicker-toggle matSuffix [for]="startdate"></mat-datepicker-toggle>
+                        <mat-datepicker (selectedChanged)="selectDate($event,i)" #startdate></mat-datepicker>
+                      </mat-form-field>
+                    </div>
+                    <div fxFlex.gt-xs="50" fxFlex.xs="100" *ngIf="MemberCheckInType_[0].CheckInType.checkin_name=='News & Updates' || MemberCheckInType_[0].CheckInType.checkin_name=='Tasks'
+            || MemberCheckInType_[0].CheckInType.checkin_name=='Goals'" class="btm_date_picker">
+                      <span>End date : {{enddate1[i]  | date: 'MM/dd/yy'}}</span>
+                      <mat-form-field>
+                        <input matInput [min]="minDate[i]" [matDatepicker]="enddate" [(ngModel)]="enddate1[i]" placeholder="End Date">
+                        <mat-datepicker-toggle matSuffix [for]="enddate">Follow up by</mat-datepicker-toggle>
+                        <mat-datepicker #enddate></mat-datepicker>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                  <mat-action-row>
+            <button mat-button class="save-button mat-accent" 
+                    (click)="nextStepFirst(i, topic)">Save</button>
+          </mat-action-row>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </mat-sidenav-container>
+      </div>
+      <div *ngIf="MemberCheckInType_.length > 1" fxFlex.gt-sm="50" fxFlex.sm="100" fxFlex.xs="100" class="table_division confirmation_page {{ MemberCheckInType_[1].CheckInType.class}}">
+        <div>
+          <mat-sidenav-container>
+            <mat-sidenav #sidenav1>
+              <div *ngIf="checkIn1">
+                {{topicNameSecond[passedData]}}
+              </div>
+              <div *ngIf="checkIn1">
+                {{resDateString_second[passedDataSecond]}}
+              </div>
+            </mat-sidenav>
+            <mat-accordion *ngFor="let topic of MemberCheckinTopicSecond; let i = index">
+              <mat-expansion-panel class="topic_outer second_sec content_inside" [expanded]="Secondstep === i" (opened)="setSecondStep(i)" hideToggle="true">
+                <mat-expansion-panel-header class="table_head">
+                  <mat-panel-title>
+                    <span class="up_arrow"><i class="material-icons">keyboard_arrow_down</i></span>
+                    <span class="topic_head">{{ MemberCheckInType_[1].CheckInType.checkin_name}}</span>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div fxLayout="row" fxLayoutWrap>
+                  <div fxFlex.gt-xs="50" fxFlex.xs="100">
+                    <div class="tags">
+                      {{topic.Topic.topic_name}}
+                    </div>
+                  </div>
+                  <div fxFlex.gt-xs="50" fxFlex.xs="100" class="check_in_date_outer">
+                    <span class="check_in_date">This happened on: {{employee.date | date: 'MM/dd/yy'}}</span>
+                  </div>
+                </div>
+                <div class="comments_outer" *ngIf="MemberCheckInType_[1].CheckInType.checkin_name == 'Recognition & Appreciation' || 
+      MemberCheckInType_[1].CheckInType.checkin_name =='Correction (Major)' ||
+      MemberCheckInType_[1].CheckInType.checkin_name == 'Correction (Minor)' || 
+      MemberCheckInType_[1].CheckInType.checkin_name =='News & Updates'">
+                  <textarea class="comment_sec" [(ngModel)]="topic.comments" placeholder="Comments">
+                  </textarea>
+                </div>
+                <div class="comments_outer" *ngIf="MemberCheckInType_[1].CheckInType.checkin_name=='Goals'">
+                  <textarea class="comment_sec" [(ngModel)]="topic.comments" placeholder="Goals">
+                  </textarea>
+                </div>
+                <div class="comments_outer" *ngIf="MemberCheckInType_[1].CheckInType.checkin_name=='Tasks'">
+                  <textarea class="comment_sec" [(ngModel)]="topic.comments" placeholder="Expectations">
+                  </textarea>
+                </div>
+                <div class="toggle_sec" fxLayout="row" fxLayoutWrap *ngIf="MemberCheckInType_[1].CheckInType.checkin_name=='Recognition & Appreciation'">
+                  <div fxFlex.gt-xs="30" fxFlex.xs="50" class="taggle_txt">
+                    <span>Above and Beyond!</span>
+                  </div>
+                  <div fxFlex.gt-xs="70" fxFlex.xs="50" class="toggle_btn" fxLayoutAlign="start center">
+                    <mat-slide-toggle [(ngModel)]="aboveBeyond_second[i]">
+                      <span class="on_btn">yes</span>
+                      <span class="off_btn">no</span>
+                    </mat-slide-toggle>
+                  </div>
+                </div>
+                <div class="toggle_sec" fxLayout="row" fxLayoutWrap *ngIf="MemberCheckInType_[1].CheckInType.checkin_name =='Correction (Major)'">
+                  <div fxFlex.gt-xs="30" fxFlex.xs="50" class="taggle_txt">
+                    <span>MisConduct</span>
+                  </div>
+                  <div fxFlex.gt-xs="70" fxFlex.xs="50" class="toggle_btn" fxLayoutAlign="start center">
+                    <mat-slide-toggle [(ngModel)]="misConduct_second[i]">
+                      <span class="on_btn">yes</span>
+                      <span class="off_btn">no</span>
+                    </mat-slide-toggle>
+                  </div>
+                </div>
+                <div class="btm_date_sec" fxLayout="row" fxLayoutWrap>
+                  <div fxFlex="100">
+                    <div fxLayout="row" fxLayoutWrap>
+                      <div *ngIf="MemberCheckInType_[1].CheckInType.checkin_name =='Correction (Major)'" fxFlex.gt-xs="33" fxFlex.xs="100" class="history_sec">
+                        <button type="button" class="history_btn" mat-button (click)="sidenav1.open();passDataSecond(i)">
+                          <span><img src="assets/images/check-in/history_icon.png"/></span><span class="history_btn_txt">see history</span>
+                        </button>
+                      </div>
+                      <div fxFlex.gt-xs="33" fxFlex.xs="100" class="btm_date_picker_center" *ngIf="MemberCheckInType_[1].CheckInType.checkin_name =='Correction (Major)'">
+                        <span>Improvement by : {{expecteddate_second[i] | date: 'MM/dd/yy'}}</span>
+                        <mat-form-field>
+                          <input matInput [matDatepicker]="expecteddate" [(ngModel)]="expecteddate_second[i]" placeholder="Expected Improvement Date">
+                          <mat-datepicker-toggle matSuffix [for]="expecteddate"></mat-datepicker-toggle>
+                          <mat-datepicker #expecteddate></mat-datepicker>
+                        </mat-form-field>
+                      </div>
+                      <div [ngClass]="{'followup':MemberCheckInType_[1].CheckInType.checkin_name !='Correction (Major)'}" class="btm_date_picker" fxFlex.gt-xs="33" fxFlex.xs="100">
+                        <span>Follow up by : {{followup_second[i]  | date: 'MM/dd/yy'}}</span>
+                        <mat-form-field>
+                          <input matInput [matDatepicker]="followup" [(ngModel)]="followup_second[i]" placeholder="Follow Up Date">
+                          <mat-datepicker-toggle matSuffix [for]="followup">
+                          </mat-datepicker-toggle>
+                          <mat-datepicker #followup></mat-datepicker>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="start_end_sec" fxFlex="100">
+                    <div fxLayout="row" fxLayoutWrap>
+                      <div fxFlex.gt-xs="50" fxFlex.xs="100" class="btm_date_picker_start" *ngIf="MemberCheckInType_[1].CheckInType.checkin_name =='News & Updates' || 
+            MemberCheckInType_[1].CheckInType.checkin_name=='Tasks'|| 
+            MemberCheckInType_[1].CheckInType.checkin_name =='Goals'">
+                        <span>Start date : {{startdate_second[i]  | date: 'MM/dd/yy'}}</span>
+                        <mat-form-field>
+                          <input matInput [matDatepicker]="startdate" [(ngModel)]="startdate_second[i]" placeholder="Start Date">
+                          <mat-datepicker-toggle matSuffix [for]="startdate"></mat-datepicker-toggle>
+                          <mat-datepicker (selectedChanged)="selectDateSecond($event, i)" #startdate></mat-datepicker>
+                        </mat-form-field>
+                      </div>
+                      <div fxFlex.gt-xs="50" fxFlex.xs="100" class="btm_date_picker" *ngIf="MemberCheckInType_[1].CheckInType.checkin_name=='News & Updates' || MemberCheckInType_[1].CheckInType.checkin_name=='Tasks'
+                || MemberCheckInType_[1].CheckInType.checkin_name=='Goals'">
+                        <span>End date : {{enddate_second[i] | date: 'MM/dd/yy'}}</span>
+                        <mat-form-field>
+                          <input matInput [min]="minDateSecond[i]" [matDatepicker]="enddate" [(ngModel)]="enddate_second[i]" placeholder="End Date">
+                          <mat-datepicker-toggle matSuffix [for]="enddate">
+                          </mat-datepicker-toggle>
+                          <mat-datepicker #enddate></mat-datepicker>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <mat-action-row>
+                  <button mat-button class="save-button mat-accent" (click)="nextStepSecond(i, topic)">Save</button>
+                </mat-action-row>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </mat-sidenav-container>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+  <div fxHide.xs fxHide.sm class="btn_sec confirmation_btm">
+    <button mat-raised-button class="back_btn" (click)="$event.preventDefault();backClicked()">Back</button>
+    <button [ngClass]="{'btn-active':finalSubmit==false}" class="next_btn mat-accent" [disabled]="finalSubmit" (click)="checkinSave()" mat-raised-button>Save Check-in</button>
+    <button [ngClass]="{'btn-active':finalSubmit==false}" class="next_btn mat-accent" [disabled]="finalSubmit" (click)="$event.preventDefault();checkinSubmit()" mat-raised-button>Publish Check-in</button>
+  </div>
+  <div fxShow.xs fxShow.sm fxHide.gt-xs fxLayout="row" fxLayoutWrap class="btn_sec confirmation_btm">
+    <div class="confirm_btns" fxFlex.xs="100">
+      <button mat-raised-button class="back_btn" (click)="$event.preventDefault();backClicked()">Back</button>
+    </div>
+    <div class="confirm_btns" fxFlex.xs="100">
+      <button [ngClass]="{'btn-active':finalSubmit==false}" class="next_btn mat-accent" [disabled]="finalSubmit" (click)="checkinSave()" mat-raised-button>Save Check-in</button>
+    </div>     
+    <div class="confirm_btns" fxFlex.xs="100">
+      <button [ngClass]="{'btn-active':finalSubmit==false}" class="next_btn mat-accent" [disabled]="finalSubmit" (click)="$event.preventDefault();checkinSubmit()" mat-raised-button>Publish Check-in</button>
+    </div>
+  </div>
+</div>
+<app-check-in-summary [selectedFirstTopicDetails]="MemberCheckinTopicFirst" [selectedSecondTopicDetails]="MemberCheckinTopicSecond" [selectedCheckinType]="MemberCheckInType_" *ngIf="show_summary && !back" [employee]="employee" [checkin_sumary]="checInDetailsSaveDoc">
+</app-check-in-summary>
+<app-start-checkin *ngIf="back" [selected_type]="selected_type" [informSelectedEmployee]="informSelectedEmployee" [topic_back]="topic_back" [back_enable]="back_enable"> </app-start-checkin>

@@ -1,0 +1,54 @@
+<mat-toolbar mat-dialog-title class="mat-accent m-0">
+  <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+    <span class="title dialog-title">Edit Category</span>
+    <!--    <button mat-button class="mat-icon-button"
+                (click)="dialogRef.close()"
+                aria-label="Close dialog">
+            <mat-icon>close</mat-icon>
+        </button> -->
+  </div>
+</mat-toolbar>
+<div>
+  <form novalidate name="editTopic" [formGroup]="editTopic"  fxFlex>
+    <div mat-dialog-content class="p-24 m-0" perfect-scrollbar>
+
+      <mat-input-container>
+        <input matInput name="from" placeholder="Category" formControlName="topic_name" type="text">
+      </mat-input-container>
+     
+    </div>
+
+    <mat-form-field class="demo-chip-list">
+      <mat-chip-list #chipList>
+        <mat-chip *ngFor="let subCategory of editsubCategories" [selectable]="selectable"
+                 [removable]="removable" (remove)="remove(subCategory)">
+          {{subCategory.name}}
+          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+        </mat-chip>
+       <input
+               [matChipInputFor]="chipList"
+               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+               [matChipInputAddOnBlur]="addOnBlur"
+               (matChipInputTokenEnd)="add($event)" />
+      </mat-chip-list>
+    </mat-form-field>
+    
+    
+    <!-- <div mat-dialog-content class="p-24 m-0" perfect-scrollbar fxLayout="row">
+      <mat-input-container fxFlex="100">
+        <input matInput placeholder="Sub Category" formControlName="topic_type">
+      </mat-input-container>
+    </div>
+     -->
+
+    <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
+      <div>
+        <button mat-raised-button class="save-button mat-accent" aria-label="SAVE" (click)="updateTopic()">
+          Save
+        </button>
+          <button mat-button (click)="dialogRef.close(false)">Cancel</button>
+      </div>
+    </div>
+    
+  </form>
+</div>

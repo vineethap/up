@@ -1,0 +1,31 @@
+<mat-card class="start-card" style="margin-left: 17%" *ngIf = "!next">
+  <md-card-header>
+    <md-card-title class="cardtitle" style="margin-left: 27%">Employee Selection</md-card-title>
+  </md-card-header>
+  <div fxLayout="column" class="maindiv" style="margin-left: 8%">
+    <form novalidate [formGroup]="empSelection" fxFlex>
+      <div fxLayout="row">
+        <mat-form-field class="checkin-full-width">
+          <input type="text" placeholder="Employee Name" aria-label="name" matInput formControlName="name" [matAutocomplete]="auto" (keyup)='updateFilter($event)'>
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of employees1" [value]="option.first_name" (click)="getEmployeeId(option.id,option.checkin_id)">
+              <span>{{option.first_name}}</span>
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        <mat-form-field class="spacebtwn">
+          <input matInput [matDatepicker]="picker2" placeholder="Date" formControlName="date">
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row">
+        <button mat-raised-button class="save-button mat-accent" aria-label="SAVE" (click)="nextButton()" style="margin-left: 30%;background-color:#8bd94c;">
+          Next
+        </button>
+      </div>
+    </form>
+  </div>
+</mat-card>
+<!--ends heres-->
+<app-choose-elements [employee]="employe_data" *ngIf = "next"></app-choose-elements>

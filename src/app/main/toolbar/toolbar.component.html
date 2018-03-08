@@ -1,0 +1,93 @@
+<mat-toolbar class="p-0  checkin_toolbar mat-elevation-z1">
+<!--   <mat-progress-bar *ngIf="showLoadingBar" class="loading-bar" color="accent" mode="indeterminate"></mat-progress-bar> -->
+  <div fxFlex fxFill fxLayout="row" fxLayoutAlign="start center">
+    <div fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
+
+      <!-- <div flex="20" class="logo">
+                <img src="assets/images/logo.png"/>
+            </div>
+            <div flex="70">
+              <div layout="column" class="head-franch">
+                <div flex="60" class="head-franchname">
+                Cradle to Cradle
+                </div>
+                <div flex="30" class="head-franchplce">
+                  Okaland
+                </div>
+              </div>
+            </div> -->
+
+            <!-- <button mat-button class="check_in_btn">Check-in</button>
+            <button mat-button class="recap">Recap</button>
+            <span class="notification"><img src="assets/images/notification.png"/></span>
+             -->
+
+
+      <button mat-button class="toggle-button-navbar mat-icon-button" fuseNavbarVertical="openBar" fxHide.gt-md>
+        <mat-icon>menu</mat-icon>
+      </button>
+      <div class="toolbar-separator" fxHide.gt-md></div>
+      <div fxLayout="row" fxLayoutAlign="start center" *ngIf="horizontalNav">
+        <div class="logo ml-16">
+          <img class="logo-icon" src="assets/images/logos/fuse.svg">
+        </div>
+      </div>
+      <!-- <div class="px-8 px-mat-16"> -->
+        <!-- <fuse-shortcuts></fuse-shortcuts> -->
+      <!-- </div> -->
+
+    </div>
+
+
+    <div class="" fxFlex="0 1 auto" fxLayout="row" fxLayoutAlign="start center">
+
+    <div *ngIf="this.role_type != 'EM'">
+        <button mat-button class="check_in_btn" (click)="redirect('check-in')">Check-in</button>
+        <button mat-button class="recap" (click)="redirect('recap')">Recap</button>
+    </div>
+
+        <span fxHide.xs class="notification"><img  src="assets/images/notification.png"/></span>
+
+      <button mat-button [matMenuTriggerFor]="userMenu" class="user-button">
+        <div fxLayout="row" fxLayoutAlign="center center">
+          <!-- <img class="avatar" src="assets/images/avatars/profile.jpg"> -->
+          <img class="avatar avatar_photo" [src]="imgSrc">
+          <!-- <span class="username mr-12" fxHide fxShow.gt-sm>{{name}}</span> -->
+          <span class="username mr-12" fxHide fxShow.gt-sm></span>
+          <mat-icon class="s-16" fxHide.xs>keyboard_arrow_down</mat-icon>
+        </div>
+      </button>
+      <mat-menu #userMenu="matMenu">
+        <button mat-menu-item (click)="myProfile()">
+          <mat-icon>account_circle</mat-icon>
+          <span>My Profile</span>
+        </button>
+        <button mat-menu-item class="" (click)="changePassword()">
+          <mat-icon>local_mall</mat-icon>
+          <span>Change Password</span>
+        </button>
+        <button mat-menu-item class="" (click)="logout()">
+          <mat-icon>exit_to_app</mat-icon>
+          <span>Logout</span>
+        </button>
+      </mat-menu>
+      <div class="toolbar-separator"></div>
+      <!-- <fuse-search-bar (onInput)="search($event)"></fuse-search-bar> -->
+      <div class="toolbar-separator"></div>
+      <mat-menu #languageMenu="matMenu">
+        <button mat-menu-item *ngFor="let lang of languages" (click)="selectedLanguage = lang">
+          <div fxLayout="row" fxLayoutAlign="start center">
+            <img class="flag mr-16" [src]="'assets/images/flags/'+lang.flag+'.png'">
+            <span class="iso">{{lang.title}}</span>
+          </div>
+        </button>
+      </mat-menu>
+
+
+    </div>
+
+
+
+
+  </div>
+</mat-toolbar>

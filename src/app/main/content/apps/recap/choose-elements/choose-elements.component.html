@@ -1,0 +1,32 @@
+<div style="width: 260%;" *ngIf="!next && !backbtn">
+  <mat-card class="start-card">
+    <md-card-header>
+      <md-card-title class="cardtitle">Choose Elements</md-card-title>
+    </md-card-header>
+    <br/>
+    <section class="mat-typography">
+      <h3>Employee Name: {{employee.name}}
+      <br/>{{employee.recap_date | date: 'MM/dd/yy'}}
+      </h3>
+    </section>
+    <div class="start-card" style="width: 75%;">
+      <div mat-dialog-content class="p-24 m-0" perfect-scrollbar fxLayout="row">
+        <mat-slide-toggle [(ngModel)]="goals">Goals</mat-slide-toggle>  
+      </div>
+      <div mat-dialog-content class="p-24 m-0" perfect-scrollbar fxLayout="row">
+        <mat-slide-toggle [(ngModel)]="tasks">Tasks</mat-slide-toggle> 
+      </div>
+      <div mat-dialog-content class="p-24 m-0" perfect-scrollbar fxLayout="row">
+        <mat-slide-toggle [(ngModel)]="assessment">Assessment</mat-slide-toggle>
+      </div>
+    </div>
+    <div fxLayout="row">
+      <button mat-raised-button class="save-button" aria-label="SAVE" (click)="backClicked()" style="margin-left: 30%;">Back</button>
+      <button mat-raised-button class="save-button mat-accent" aria-label="SAVE" (click)="nextButton()" style="background-color:#8bd94c;">
+        Next
+      </button>      
+    </div>
+  </mat-card>
+</div>
+<app-detail-view [employee]="employee" *ngIf="next && !backbtn"></app-detail-view>
+<app-emp-selection [employee]="employee" *ngIf="backbtn"></app-emp-selection>

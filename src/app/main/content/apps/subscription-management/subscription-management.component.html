@@ -1,0 +1,74 @@
+
+  <div>Let's get you started !</div>
+<mat-horizontal-stepper [linear]="isLinear">
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+    
+      <ng-template matStepLabel>Type no. of Users</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="No. Of Users" (keypress)="onlyNumberKey($event)" formControlName="noOfUsers" required [maxLength]="8">
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperNext (click)="pay()">Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Total Amount </ng-template>
+    <h5>Total Amount = $ {{totalAmount}} </h5>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button matStepperNext>Next</button>
+    </div>
+  </mat-step>
+  <mat-step *ngIf="cards.length>0">
+    <ng-template matStepLabel>Card Saved </ng-template>
+    <div *ngFor="let card of cards">
+      <p>{{card.cardNum}}</p>
+      <button (click)="excutepaymnt(card)" style="color: blue;"> Pay</button>
+      <button (click)="Delete(card)" style="color: blue;"> Delete </button>
+    </div>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button matStepperNext (click)="show_next=true;">Next</button>
+      <button mat-button matStepperNext>Pay using this card</button>
+    </div>
+  </mat-step>
+  <mat-step [stepControl]="paymentform" *ngIf="show_next">
+    <form [formGroup]="paymentform">
+      <ng-template matStepLabel>Payment</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="Card Number" maxlength="16" formControlName="number" (keypress)="onlyNumberKey($event)">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Card Name" formControlName="cardname">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select placeholder="Month" formControlName="exp_month">
+          <mat-option value={{month}} *ngFor="let month of months">{{month}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select placeholder="Year" formControlName="exp_year">
+          <mat-option value={{year}} *ngFor="let year of years">{{year}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="CVV" formControlName="cvc" maxlength="3">
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext (click)="proceedPayment()" [disabled]="paymentform.invalid">Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <div>
+      <mat-spinner *ngIf="!complete_process"></mat-spinner>
+      <p *ngIf="!complete_process">Your transaction is being processed</p>
+      <button *ngIf=" paymentstatus ">Done</button>
+      <button *ngIf="complete_process && !paymentstatus " mat-button matStepperPrevious>Back</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>

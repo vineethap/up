@@ -1,0 +1,35 @@
+{
+  "name": "Member",
+  "base": "User",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "franchise_id": {
+      "type": "string"
+    },
+    "username": {
+      "type": "string"
+    },
+    "authkey": {
+      "type": "string"
+    },
+    "status": {
+      "type": "number"
+    },
+    "owner_id": {
+      "type": "string"
+    },
+    "role": {
+      "type": "string"
+    },
+    "position": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

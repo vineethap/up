@@ -1,0 +1,37 @@
+<div id="ngx-datatable" class="page-layout simple fullwidth" fusePerfectScrollbar>
+  <!-- HEADER -->
+   <div class="header md-accent-bg p-24 h-160" style="background-color: #84cd4b;" fxLayout="row" fxLayoutAlign="space-between">
+    <div fxLayout="column" fxLayoutAlign="center start">
+     
+      <div class="h2 mt-16">Billing</div>
+    </div>
+    
+  </div>
+ 
+
+  <div class="content p-24">
+    <!-- <input type='text' class="searchbar" placeholder='Search....' (keyup)='updateFilter($event)' /> -->
+    <ngx-datatable class="material" [rows]="billing_details" [loadingIndicator]="loadingIndicator" [columnMode]="'force'" [headerHeight]="48" [footerHeight]="56" [rowHeight]="'auto'" [scrollbarH]="true" [reorderable]="reorderable" [limit]="10">
+      <ngx-datatable-column name="Users purchased" prop="plan">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+      {{value}}  users
+      </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Amount" prop="amount">
+      </ngx-datatable-column>
+     <!--  <ngx-datatable-column name="Franchise" prop="Franchise.company_name">
+      </ngx-datatable-column> -->
+      <ngx-datatable-column name="Invoice Date" prop="createdAt">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+        {{value | date:shortDate}}
+      </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Status" >
+       <ng-template let-value="value" ngx-datatable-cell-template>
+        {{value}}
+      </ng-template>
+      </ngx-datatable-column>
+     
+    </ngx-datatable>
+  </div>
+  </div>

@@ -1,0 +1,475 @@
+<div style="overflow:auto;width: 260%;">
+    <!-- first div -->
+    <div *ngIf="current_stage==1">
+        <mat-card class="start-card">
+            <md-card-header>
+                <md-card-title class="cardtitle">Employee Selection</md-card-title>
+            </md-card-header>
+            <div fxLayout="column" class="maindiv">
+                <!-- <form novalidate [formGroup]="empSelection" fxFlex> -->
+                <div fxLayout="row">
+                    <mat-form-field class="checkin-full-width">
+                        <input type="text" placeholder="Employee Name" aria-label="name" matInput [matAutocomplete]="auto" (keyup)='updateFilter($event)'>
+                        <mat-autocomplete #auto="matAutocomplete">
+                            <mat-option *ngFor="let option of employees1 |unique:'id'" [value]="option.first_name" (click)="getEmployeeId(option.id,option)">
+                                <span>{{option.first_name}}</span>
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                    <mat-form-field class="spacebtwn">
+                        <input matInput [matDatepicker]="picker2" placeholder="Date" [formControl]="date">
+                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                        <mat-datepicker #picker2></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row">
+                    <button mat-raised-button class="save-button mat-accent" [disabled]="step1_next" aria-label="SAVE" (click)="nextButton()"
+                        style="background-color:#8bd94c;">
+                        Next
+                    </button>
+                    <button mat-raised-button class="save-button mat-accent" aria-label="SAVE" [disabled]="step1_saved" (click)="updateRecap()"
+                        style="background-color:#8bd94c;">
+                        Saved
+                    </button>
+                </div>
+                <!-- <div fxLayout="row">
+        </div> -->
+                <!-- </form> -->
+            </div>
+        </mat-card>
+    </div>
+    <!-- second div -->
+    <div *ngIf="current_stage==2">
+        <mat-card class="start-card">
+            <md-card-header>
+                <md-card-title class="cardtitle">Choose Elements</md-card-title>
+            </md-card-header>
+            <br/>
+            <section class="mat-typography">
+                <h3>Employee Name: {{employee.first_name}}
+                    <!-- <br/>{{employee.recap_date | date: 'MM/dd/yy'}} -->
+                </h3>
+            </section>
+            <div class="start-card" style="width: 75%;">
+                <div mat-dialog-content class="p-24 m-0" perfect-scrollbar fxLayout="row">
+                    <mat-slide-toggle [(ngModel)]="goals">Goals</mat-slide-toggle>
+                </div>
+                <div mat-dialog-content class="p-24 m-0" perfect-scrollbar fxLayout="row">
+                    <mat-slide-toggle [(ngModel)]="tasks">Tasks</mat-slide-toggle>
+                </div>
+                <div mat-dialog-content class="p-24 m-0" perfect-scrollbar fxLayout="row">
+                    <mat-slide-toggle [(ngModel)]="assessment">Assessment</mat-slide-toggle>
+                </div>
+            </div>
+            <div fxLayout="row">
+                <!--  <button mat-raised-button class="save-button" aria-label="SAVE" (click)="backButton()" style="margin-left: 30%;">Back</button> -->
+                <button mat-raised-button class="save-button mat-accent" aria-label="SAVE" (click)="nextButton()" style="background-color:#8bd94c;">
+                    Next
+                </button>
+            </div>
+        </mat-card>
+    </div>
+    <!-- third div -->
+    <div *ngIf="current_stage==3">
+        <mat-card class="start-card">
+            <md-card-header>
+                <md-card-title class="cardtitle"></md-card-title>
+            </md-card-header>
+            <br/>
+            <section class="mat-typography">
+                <h3>Employee Name: {{employee.first_name}}
+                    <!-- <br/>{{date | date: 'MM/dd/yy'}} -->
+                </h3>
+            </section>
+            <div>
+                <md-card-header>
+                    <md-card-title class="cardtitle">Summary</md-card-title>
+                </md-card-header>
+                <div>
+                    <mat-card class="start-card" style="width: 20%;" *ngFor="let type of checkin_type | keys" >
+                        {{checkin_type[type].details.checkin_name}}
+                        <!-- <span>: <b>  {{type.type_count}}</b></span> -->
+                        <span>:
+                            <b>{{checkin_type[type].count}}</b>
+                        </span>
+                    </mat-card>
+                </div>
+                <div class="start-card" style="width: 75%;">
+                    <div mat-dialog-content class="p-24 m-0" perfect-scrollbar fxLayout="row">
+                        <!-- <mat-slide-toggle [(ngModel)]="aboveBeyond">Any Above and Beyond</mat-slide-toggle> -->
+                        <h5>
+                            <b>Any Above and Beyond</b>
+                        </h5>
+                        <!-- <div *ngIf="aboveBeyond"> -->
+                        <!-- <span style="margin-left: 47px;" >         -->
+                        <mat-chip-list>
+                            <mat-chip color="accent" selected="true" *ngFor="let topic of topic_list.above |unique:'checkin_topic_id'">
+                                {{topic.Topic.topic_name}}
+                            </mat-chip>
+                        </mat-chip-list>
+                        <!-- </span> -->
+                        <!-- </div> -->
+                    </div>
+                    <div mat-dialog-content class="p-24 m-0" perfect-scrollbar fxLayout="row">
+                        <!-- <mat-slide-toggle [(ngModel)]="misconduct">Any Misconduct tags</mat-slide-toggle> -->
+                        <h5>
+                            <b>Any Misconduct tags</b>
+                        </h5>
+                        <!-- <div > -->
+                        <!-- <div *ngIf="misconduct"> -->
+                        <mat-chip-list>
+                            <mat-chip color="accent" selected="true" *ngFor="let topic of topic_list.misconduct |unique:'checkin_topic_id'">
+                                {{topic.Topic.topic_name}}
+                            </mat-chip>
+                        </mat-chip-list>
+                        <!-- <span style="margin-left: 47px;" *ngFor="let topic_misconduct of checkin_topics_misconduct |unique:'topic_name'">
+	            {{topic_misconduct.topic_name}}
+	          </span>
+ -->
+                        <!-- </div> -->
+                    </div>
+                    <div mat-dialog-content class="p-24 m-0" perfect-scrollbar fxLayout="row">
+                        <!-- <mat-slide-toggle [(ngModel)]="expectedImprovement">Any Expected Improvement Dates</mat-slide-toggle> -->
+                        <h5>
+                            <b>Any Expected Improvement Dates</b>
+                        </h5>
+                        <!-- <div *ngIf="expectedImprovement"> -->
+                        <!--     <span style="margin-left: 47px;" *ngFor="let topic_expectation of checkin_topics_expectation |unique:'topic_exp'">
+	            {{topic_expectation.topic_exp | date: 'MM/dd/yy'}}          
+	        </span> -->
+                        <mat-chip-list>
+                            <mat-chip color="accent" selected="true" *ngFor="let topic of topic_list.expected |unique:'checkin_topic_id'">
+                                {{topic.Topic.topic_name}}
+                            </mat-chip>
+                        </mat-chip-list>
+                        <!--  </div> -->
+                    </div>
+                </div>
+            </div>
+            <div>
+                <md-card-header>
+                    <md-card-title class="cardtitle">Strengths & Opportunities</md-card-title>
+                </md-card-header>
+                <div class="start-card" style="width: 75%;">
+                    <md-card-header>
+                        <md-card-title class="cardtitle">Strengths</md-card-title>
+                    </md-card-header>
+                    <mat-accordion class="example-headers-align">
+                        <mat-expansion-panel style="margin-bottom: 16px;" hideToggle="true">
+                            <mat-expansion-panel-header style="padding: 20px;background-color: rgb(211, 211, 211);">
+                                <mat-panel-title>
+                                    3 Most Recognized Tags for this Recap Period
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <div fxLayout="row" fxLayoutWrap>
+                                <div fxFlex="23" *ngFor="let topic of topic_list.strength_recap |unique:'checkin_topic_id'">
+                                    <mat-nav-list class="category">
+                                        <mat-list-item>
+                                            <!-- <mat-checkbox [(ngModel)]="most_tag_rec_recap_period[topic.checkin_topic_id]"> -->
+                                                {{topic.Topic.topic_name}}
+                                            <!-- </mat-checkbox> -->
+                                        </mat-list-item>
+                                    </mat-nav-list>
+                                </div>
+                            </div>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                    <mat-accordion class="example-headers-align">
+                        <mat-expansion-panel style="margin-bottom: 16px;" hideToggle="true">
+                            <mat-expansion-panel-header style="padding: 20px;background-color: rgb(211, 211, 211);">
+                                <mat-panel-title>
+                                    3 Most Recognized Tags over employee Lifetime
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <div fxLayout="row" fxLayoutWrap>
+                                <div fxFlex="23" *ngFor="let topic of topic_list.strength_recap |unique:'checkin_topic_id'">
+                                    <mat-nav-list class="category">
+                                        <mat-list-item>
+                                            <!-- <mat-checkbox [(ngModel)]="most_tag_reg_recap_lifetime[topic.checkin_topic_id]"> -->
+                                             {{topic.Topic.topic_name}}
+                                            <!-- </mat-checkbox> -->
+                                        </mat-list-item>
+                                    </mat-nav-list>
+                                </div>
+                            </div>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                    <md-card-header>
+                        <md-card-title class="cardtitle">Opportunities</md-card-title>
+                    </md-card-header>
+                    <mat-accordion class="example-headers-align">
+                        <mat-expansion-panel style="margin-bottom: 16px;" hideToggle="true">
+                            <mat-expansion-panel-header style="padding: 20px;background-color: rgb(211, 211, 211);">
+                                <mat-panel-title>
+                                    2 Most Corrected Tags for this Recap Period
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <div fxLayout="row" fxLayoutWrap>
+                                <div fxFlex="23" *ngFor="let topic of topic_list.oppurtunities_recap |unique:'checkin_topic_id'">
+                                    <mat-nav-list class="category">
+                                        <mat-list-item>
+                                            <!-- <mat-checkbox [(ngModel)]="most_tag_corr_recap_period[topic.checkin_topic_id]"> -->
+                                                 {{topic.Topic.topic_name}}
+                                            <!-- </mat-checkbox> -->
+                                        </mat-list-item>
+                                    </mat-nav-list>
+                                </div>
+                            </div>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                    <mat-accordion class="example-headers-align">
+                        <mat-expansion-panel style="margin-bottom: 16px;" hideToggle="true">
+                            <mat-expansion-panel-header style="padding: 20px;background-color: rgb(211, 211, 211);">
+                                <mat-panel-title>
+                                    2 Most Corrected Tags over employee Lifetime
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <div fxLayout="row" fxLayoutWrap>
+                                <div fxFlex="23" *ngFor="let topic of topic_list.oppurtunities_recap |unique:'checkin_topic_id'">
+                                    <mat-nav-list class="category">
+                                        <mat-list-item>
+                                            <mat-checkbox [(ngModel)]="most_tag_corr_recap_lifetime[topic.checkin_topic_id]">{{topic.Topic.topic_name}}</mat-checkbox>
+                                        </mat-list-item>
+                                    </mat-nav-list>
+                                </div>
+                            </div>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                </div>
+            </div>
+            <div *ngIf="goals">
+                <md-card-header>
+                    <md-card-title class="cardtitle">Goals</md-card-title>
+                </md-card-header>
+                <div class="start-card" style="width: 75%;">
+                    <div fxFlex="23" *ngFor="let topic_goal of topic_list.goals |unique:'checkin_topic_id'">
+                        <mat-accordion>
+                            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                         {{topic_goal.Topic.topic_name}}
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+                                <p>
+                                    Comments:{{topic_goal.comments}} Start date:{{topic_goal.start_date | date: 'MM/dd/yy'}} End
+                                    date:{{topic_goal.end_date | date: 'MM/dd/yy'}} Expected date:{{topic_goal.expectation
+                                    | date: 'MM/dd/yy'}} Followup date:{{topic_goal.follow_up_date | date:
+                                    'MM/dd/yy'}}</p>
+                            </mat-expansion-panel>
+                        </mat-accordion>
+                        <mat-slide-toggle [(ngModel)]="topic_goal_end_date[topic_goal.checkin_topic_id]"></mat-slide-toggle>
+                    </div>
+                    <br/>
+                </div>
+                <!-- <div mat-dialog-content class="p-24 m-0" perfect-scrollbar fxLayout="row">
+          <mat-slide-toggle [(ngModel)]="goalAchieved">Goal Achieved</mat-slide-toggle>  
+      </div> -->
+                <!--       <div class="start-card" style="width: 75%;">
+          <div fxFlex="23" *ngFor="let topic_goal_start of checkin_topic_goal_start |unique:'topic_name'">
+              <mat-nav-list class="category">
+                <mat-list-item>
+                  <mat-checkbox [(ngModel)]="topic_goal_start_date[topic_goal_start.topic_id]">{{topic_goal_start.topic_name}}</mat-checkbox>
+                </mat-list-item>               
+              </mat-nav-list>              
+            </div>
+          <br/>
+      </div> -->
+            </div>
+            <div *ngIf="tasks">
+                <md-card-header>
+                    <md-card-title class="cardtitle">Tasks</md-card-title>
+                </md-card-header>
+                <div class="start-card" style="width: 75%;">
+                    <div fxFlex="23" *ngFor="let topic_task of topic_list.tasks |unique:'checkin_topic_id'">
+                        <mat-accordion>
+                            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                         {{topic_task.Topic.topic_name}}
+                                         
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+                                <p>
+                                    Comments:{{topic_task.comments}} Start date:{{topic_task.start_date | date: 'MM/dd/yy'}} End
+                                    date:{{topic_task.end_date | date: 'MM/dd/yy'}} Expected date:{{topic_task.expectation
+                                    | date: 'MM/dd/yy'}} Followup date:{{topic_task.follow_up_date | date:
+                                    'MM/dd/yy'}}</p>
+                            </mat-expansion-panel>
+                        </mat-accordion>
+                        <mat-slide-toggle [(ngModel)]="topic_task_end_date[topic_task.checkin_topic_id]"></mat-slide-toggle>
+                        <!-- <mat-checkbox [(ngModel)]="topic_task_end_date[topic_task.topic_id]">{{topic_task.topic_name}}</mat-checkbox> -->
+                    </div>
+                    <br/>
+                </div>
+                <!-- <div mat-dialog-content class="p-24 m-0" perfect-scrollbar fxLayout="row">
+          <mat-slide-toggle [(ngModel)]="taskComplete">Task Complete</mat-slide-toggle>  
+      </div> -->
+                <!--       <div class="start-card" style="width: 75%;">
+          <div fxFlex="23" *ngFor="let topic_task_start of checkin_topic_task_start |unique:'topic_name'">
+              <mat-nav-list class="category">
+                <mat-list-item>
+                  <mat-checkbox [(ngModel)]="topic_task_start_date[topic_task_start.topic_id]">{{topic_task_start.topic_name}}</mat-checkbox>
+                </mat-list-item>                
+              </mat-nav-list>
+            </div>
+          <br/>
+      </div> -->
+            </div>
+            <div *ngIf="assessment">
+                <md-card-header>
+                    <md-card-title class="cardtitle">Assessment</md-card-title>
+                </md-card-header>
+                <div class="start-card">
+                    Employee is currently meeting all individual standards/goals for their position
+                    <mat-radio-group [(ngModel)]="individual_standards">
+                        <mat-radio-button style="padding: 29px;" value="1">Yes</mat-radio-button>
+                        <mat-radio-button style="padding: 29px;" value="0">No</mat-radio-button>
+                    </mat-radio-group>
+                </div>
+                <div class="start-card">
+                    Impact of employee's performance on customers, team and company
+                    <textarea matInput placeholder="Comments" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5" style="border: 1px solid #ccc;"
+                        [(ngModel)]="employee_performance">
+          </textarea>
+                </div>
+                <div class="start-card">
+                    Based on their performance, employee is ready for additional responsibility
+                    <mat-radio-group [(ngModel)]="additional_responsibility">
+                        <mat-radio-button style="padding: 29px;" value="1">Yes</mat-radio-button>
+                        <mat-radio-button style="padding: 29px;" value="0">No</mat-radio-button>
+                    </mat-radio-group>
+                    <div *ngIf="additional_responsibility==1">
+                        Complete Growth Plan
+                        <textarea matInput placeholder="Comments" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5" style="border: 1px solid #ccc;"
+                            [(ngModel)]="complete_growth_plan">
+            </textarea>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <md-card-header>
+                    <md-card-title class="cardtitle">Notes</md-card-title>
+                </md-card-header>
+                <div class="start-card">
+                    Manager Input & Expectations
+                    <textarea matInput placeholder="Comments" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5" style="border: 1px solid #ccc;"
+                        [(ngModel)]="manager_notes">
+          </textarea>
+                </div>
+                <div class="start-card">
+                    Employee Input
+                    <textarea matInput placeholder="Comments" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5" style="border: 1px solid #ccc;"
+                        [(ngModel)]="employee_notes">
+          </textarea>
+                </div>
+            </div>
+            <div fxLayout="row">
+                <button mat-raised-button class="save-button" aria-label="SAVE" (click)="backButton()" style="margin-left: 30%;">Back</button>
+                <button mat-raised-button class="save-button mat-accent" aria-label="SAVE" (click)="recapSubmit(1)" style="background-color:#8bd94c;">
+                    Next
+                </button>
+                <button mat-raised-button class="save-button mat-accent" aria-label="SAVE" (click)="recapSubmit(0)" style="background-color:#8bd94c;">
+                    Save as draft
+                </button>
+            </div>
+        </mat-card>
+    </div>
+    <div *ngIf="current_stage==4">
+        <div class="card-preview">
+            <div class="fuse-card">
+                <div class="p-16">
+                    <div class="h1">Summary</div>
+                    <div class="h4 secondary-text">{{recap_details.recap_date | date: 'MM/dd/yy'}}</div>
+                </div>
+                <div class="p-16 pt-0 line-height-1.75">
+                    <p mat-line *ngIf="recap_details.goal_achieved==1; else elsegoals;">Goals Achieved : Yes </p>
+                    <ng-template #elsegoals>
+                        <p mat-line>Goals Achieved : No</p>
+                    </ng-template>
+                    <p mat-line *ngIf="recap_details.Individual_standards==1; else elsegoals;">Individual standards : Yes </p>
+                    <ng-template #elsegoals>
+                        <p mat-line>individual standards : No</p>
+                    </ng-template>
+                    <p mat-line *ngIf="recap_details.additional_responsibility==1; else elsegoals;">Additional responsibility : Yes </p>
+                    <ng-template #elsegoals>
+                        <p mat-line>Additional responsibility : No</p>
+                    </ng-template>
+                    <p mat-line>Performance: {{recap_details.member_performance}} </p>
+                    <p mat-line>Employee Note: {{recap_details.creator_note}} </p>
+                    <p mat-line>My Note: {{recap_details.member_note}} </p>
+                </div>
+            </div>
+        </div>
+        <mat-list>
+            <h4 mat-line>strength</h4>
+            <h3 mat-subheader>Recap Time Period</h3>
+            <mat-list-item *ngFor="let topic of strength_recap">
+                <mat-icon mat-list-icon>chevron_right</mat-icon>
+                <mat-chip-list>
+                    <mat-chip>{{topic.Topic.topic_name}}</mat-chip>
+                </mat-chip-list>
+            </mat-list-item>
+            <h3 mat-subheader>Lifetime</h3>
+            <mat-list-item *ngFor="let topic of strength_lifetime">
+                <mat-icon mat-list-icon>chevron_right</mat-icon>
+                <mat-chip-list>
+                    <mat-chip>{{topic.Topic.topic_name}}</mat-chip>
+                </mat-chip-list>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <h4 mat-line>Oppurtunity</h4>
+            <h3 mat-subheader>Recap Time Period</h3>
+            <mat-list-item *ngFor="let topic of oppurtunity_recap">
+                <mat-icon mat-list-icon>chevron_right</mat-icon>
+                <mat-chip-list>
+                    <mat-chip>{{topic.Topic.topic_name}}</mat-chip>
+                </mat-chip-list>
+            </mat-list-item>
+            <h3 mat-subheader>Lifetime</h3>
+            <mat-list-item *ngFor="let topic of oppurtunity_lifetime">
+                <mat-icon mat-list-icon>chevron_right</mat-icon>
+                <mat-chip-list>
+                    <mat-chip>{{topic.Topic.topic_name}}</mat-chip>
+                </mat-chip-list>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <h4 mat-line>Goal</h4>
+            <h3 mat-subheader>Completed</h3>
+            <mat-list-item *ngFor="let topic of completed_goal">
+                <mat-icon mat-list-icon>chevron_right</mat-icon>
+                <mat-chip-list>
+                    <mat-chip>{{topic.Topic.topic_name}}</mat-chip>
+                </mat-chip-list>
+            </mat-list-item>
+            <h3 mat-subheader>Incompleted</h3>
+            <mat-list-item *ngFor="let topic of incompleted_goal">
+                <mat-icon mat-list-icon>chevron_right</mat-icon>
+                <mat-chip-list>
+                    <mat-chip>{{topic.Topic.topic_name}}</mat-chip>
+                </mat-chip-list>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <h4 mat-line>Task</h4>
+            <h3 mat-subheader>Completed</h3>
+            <mat-list-item *ngFor="let topic of completed_task">
+                <mat-icon mat-list-icon>chevron_right</mat-icon>
+                <mat-chip-list>
+                    <mat-chip>{{topic.Topic.topic_name}}</mat-chip>
+                </mat-chip-list>
+            </mat-list-item>
+            <h3 mat-subheader>Incompleted</h3>
+            <mat-list-item *ngFor="let topic of incompleted_task">
+                <mat-icon mat-list-icon>chevron_right</mat-icon>
+                <mat-chip-list>
+                    <mat-chip>{{topic.Topic.topic_name}}</mat-chip>
+                </mat-chip-list>
+            </mat-list-item>
+        </mat-list>
+        <div>
+            For manager
+            <button mat-raised-button style="background-color:#8bd94c; color: #fff" (click)="sendSummary()">Im in</button>
+            For employee
+            <button mat-raised-button style="background-color:#8bd94c; color: #fff" (click)="sendSummary()">Im in</button>
+        </div>
+    </div>
+</div>

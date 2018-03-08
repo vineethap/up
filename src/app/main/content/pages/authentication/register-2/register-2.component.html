@@ -1,0 +1,114 @@
+<div id="register" fxLayout="row" fxLayoutAlign="start">
+
+   
+    <div id="login-intro" fxLayoutAlign="center center" fxFlex fxHide fxShow.gt-xs>
+        <div >
+         <img   src="assets/images/logos/logo.png">
+            <!-- <span>UPFRONT</span> -->
+        </div>
+
+      <!--   <div class="title">
+            Welcome to Upfront!
+        </div> -->
+
+        <!-- <div class="description">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ullamcorper nisl erat,
+            vel convallis elit fermentum pellentesque. Sed mollis velit facilisis facilisis viverra.
+        </div> -->
+    </div>
+
+    <div id="register-form-wrapper" perfect-scrollbar>
+
+        <div id="register-form">
+
+            <div class="logo" fxHide.gt-xs>
+                <!-- <span>F</span> -->
+            </div>
+
+            <div class="title">Account Setup</div>
+           
+
+            <form name="registerForm" [formGroup]="registerForm" novalidate>
+
+                <mat-form-field>
+                    <input matInput placeholder="Company Name" formControlName="companyname"
+                    (blur)="checkFranchiseName()">
+                    <mat-error *ngIf="registerFormErrors.companyname.required">
+                        Company Name is required
+                    </mat-error>
+                </mat-form-field>
+                <span class="already_exists" *ngIf="already_exists">Company Name Already Exists</span>
+                <mat-form-field>
+                    <input  matInput placeholder="Email" formControlName="email">
+                    <mat-error *ngIf="registerFormErrors.email.required">
+                        Email is required
+                    </mat-error>
+                    <mat-error *ngIf="!registerFormErrors.email.required && registerFormErrors.email.email">
+                        Please enter a valid email address
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput placeholder="Years Of Operating" formControlName="yearsOfOperating"
+                    (keypress)="onlyNumberKey($event)">
+                   <!--  <mat-error *ngIf="registerFormErrors.yearsOfOperating.required">
+                        Years Of Operating is required
+                    </mat-error> -->
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput placeholder="Location" formControlName="location">
+                   <!--  <mat-error *ngIf="registerFormErrors.location.required">
+                        Location is required
+                    </mat-error> -->
+                </mat-form-field>
+
+                <!-- <div class="terms" fxLayout="row" fxLayoutAlign="center center">
+                    <mat-checkbox name="terms" aria-label="I read and accept" required>
+                        <span>I read and accept</span>
+                    </mat-checkbox>
+                    <a href="#">terms and conditions</a>
+                </div>
+                -->
+                <div mat-dialog-content class="p-0 m-0" perfect-scrollbar fxLayout="row">
+                    <mat-form-field>
+                        <mat-select placeholder="Industry"  formControlName="Industry">
+                            <mat-option *ngFor="let industry of industry_set" value={{industry.id}}>
+                            {{industry.Industry}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <!-- <div mat-dialog-content class="p-24 m-0" perfect-scrollbar fxLayout="row">
+                  <div mat-dialog-content perfect-scrollbar fxLayout="row">
+                    <span>Company Logo</span>
+                  </div>
+                  <input id="photo" type="file" class="form-control" name="single" accept="image/x-png,image/gif,image/jpeg" (change)="fileChange($event)" />
+                  <img [src]="logourl" class="imagelogo">
+                </div> -->
+
+                <div fxLayout="row">
+                    <div class="file-uploader" style="cursor: pointer;">
+                        <input hidden type="file" #fileInput (change)="fileChange($event)"/>
+                        <div class="add-file-button add_btn_top" (click)="fileInput.click()"  aria-label="Add file">
+                        Upload Logo
+                        </div>
+                    </div>
+
+                   <div class="filename">{{filename}}</div>
+                </div>
+
+                <button mat-raised-button color="accent" class="submit-button" aria-label="SAVE"
+                  (click)="createFranchise()" [disabled]="registerForm.invalid">
+                    CREATE
+                </button>
+
+            </form>
+
+           <!--  <div class="register" fxLayout="column" fxLayoutAlign="center center">
+                <span class="text">Already have an account?</span>
+                <a class="link" [routerLink]="'/admin/login'">Login</a>
+            </div> -->
+        </div>
+    </div>
+</div>

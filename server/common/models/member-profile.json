@@ -1,0 +1,62 @@
+{
+  "name": "MemberProfile",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "member_id": {
+      "type": "string"
+    },
+    "first_name": {
+      "type": "string"
+    },
+    "middle_name": {
+      "type": "string"
+    },
+    "last_name": {
+      "type": "string"
+    },
+    "dob": {
+      "type": "string"
+    },
+    "gender": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "number"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string"
+    },
+    "hire_date": {
+      "type": "date"
+    },
+    "term_date": {
+      "type": "date"
+    },
+    "lengthin_current_position": {
+      "type": "string"
+    },
+    "education_level": {
+      "type": "string"
+    },
+    "degree": {
+      "type": "string"
+    },
+    "labour_force_exp": {
+      "type": "number"
+    },
+    "modified_by": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

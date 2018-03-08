@@ -1,0 +1,247 @@
+<div style="width: 260%;overflow: auto;height: 700px;" *ngIf="!recap_confirmation && !back">
+  <mat-card class="start-card">
+    <md-card-header>
+      <md-card-title class="cardtitle"></md-card-title>
+    </md-card-header>
+    <br/>
+    <section class="mat-typography">
+      <h3>Employee Name: {{employee.name}}
+      <br/>{{employee.recap_date | date: 'MM/dd/yy'}}
+      </h3>
+    </section>
+    <div>
+      <md-card-header>
+        <md-card-title class="cardtitle">Summary</md-card-title>
+      </md-card-header>
+      <mat-card class="start-card" style="width: 20%;" *ngFor="let type of checkin_types">
+        {{type.type_name}}
+        <span>: <b>  {{type.type_count}}</b></span>
+      </mat-card>
+      <div class="start-card" style="width: 75%;">
+        <div mat-dialog-content class="p-24 m-0" perfect-scrollbar fxLayout="row">
+          <mat-slide-toggle [(ngModel)]="aboveBeyond">Any Above and Beyond</mat-slide-toggle>
+          <div *ngIf="aboveBeyond">
+            <span style="margin-left: 47px;" *ngFor="let topic_above of checkin_topics_above |unique:'topic_name'">        
+         {{topic_above.topic_name}}
+        </span>
+          </div>
+        </div>
+        <div mat-dialog-content class="p-24 m-0" perfect-scrollbar fxLayout="row">
+          <mat-slide-toggle [(ngModel)]="misconduct">Any Misconduct tags</mat-slide-toggle>
+          <div *ngIf="misconduct">
+            <span style="margin-left: 47px;" *ngFor="let topic_misconduct of checkin_topics_misconduct |unique:'topic_name'">
+            {{topic_misconduct.topic_name}}
+          </span>
+          </div>
+        </div>
+        <div mat-dialog-content class="p-24 m-0" perfect-scrollbar fxLayout="row">
+          <mat-slide-toggle [(ngModel)]="expectedImprovement">Any Expected Improvement Dates</mat-slide-toggle>
+          <div *ngIf="expectedImprovement">
+            <span style="margin-left: 47px;" *ngFor="let topic_expectation of checkin_topics_expectation |unique:'topic_exp'">
+            {{topic_expectation.topic_exp | date: 'MM/dd/yy'}}          
+        </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <md-card-header>
+        <md-card-title class="cardtitle">Strengths & Opportunities</md-card-title>
+      </md-card-header>
+      <div class="start-card" style="width: 75%;">
+      <md-card-header>
+        <md-card-title class="cardtitle">Strengths</md-card-title>
+      </md-card-header>
+        <mat-accordion class="example-headers-align">
+          <mat-expansion-panel style="margin-bottom: 16px;" hideToggle="true">
+            <mat-expansion-panel-header style="padding: 20px;background-color: rgb(211, 211, 211);">
+              <mat-panel-title>
+                3 Most Recognized Tags for this Recap Period
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div fxLayout="row" fxLayoutWrap>
+              <div fxFlex="23" *ngFor="let period_topic_reg of checkin_topic_reg_period |unique:'topic_name'">
+                <mat-nav-list class="category">
+                  <mat-list-item>
+                    <mat-checkbox [(ngModel)]="most_tag_rec_recap_period[period_topic_reg.topic_id]">{{period_topic_reg.topic_name}}</mat-checkbox>
+                  </mat-list-item>
+                </mat-nav-list>
+              </div>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+        <mat-accordion class="example-headers-align">
+          <mat-expansion-panel style="margin-bottom: 16px;" hideToggle="true">
+            <mat-expansion-panel-header style="padding: 20px;background-color: rgb(211, 211, 211);">
+              <mat-panel-title>
+                3 Most Recognized Tags over employee Lifetime
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div fxLayout="row" fxLayoutWrap>
+              <div fxFlex="23" *ngFor="let lifetime_topic_reg of checkin_topic_reg_lifetime |unique:'topic_name'">
+                <mat-nav-list class="category">
+                  <mat-list-item>
+                    <mat-checkbox [(ngModel)]="most_tag_reg_recap_lifetime[lifetime_topic_reg.topic_id]">{{lifetime_topic_reg.topic_name}}</mat-checkbox>
+                  </mat-list-item>
+                </mat-nav-list>
+              </div>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+        <md-card-header>
+          <md-card-title class="cardtitle">Opportunities</md-card-title>
+        </md-card-header>
+        <mat-accordion class="example-headers-align">
+          <mat-expansion-panel style="margin-bottom: 16px;" hideToggle="true">
+            <mat-expansion-panel-header style="padding: 20px;background-color: rgb(211, 211, 211);">
+              <mat-panel-title>
+                2 Most Corrected Tags for this Recap Period
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div fxLayout="row" fxLayoutWrap>
+              <div fxFlex="23" *ngFor="let period_topic_corr of checkin_topic_corr_period |unique:'topic_name'">
+                <mat-nav-list class="category">
+                  <mat-list-item>
+                    <mat-checkbox [(ngModel)] ="most_tag_corr_recap_period[period_topic_corr.topic_id]">{{period_topic_corr.topic_name}}</mat-checkbox>
+                  </mat-list-item>
+                </mat-nav-list>
+              </div>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+        <mat-accordion class="example-headers-align">
+          <mat-expansion-panel style="margin-bottom: 16px;" hideToggle="true">
+            <mat-expansion-panel-header style="padding: 20px;background-color: rgb(211, 211, 211);">
+              <mat-panel-title>
+                2 Most Corrected Tags over employee Lifetime
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div fxLayout="row" fxLayoutWrap>
+              <div fxFlex="23" *ngFor="let lifetime_topic_corr of checkin_topic_corr_lifetime |unique:'topic_name'">
+                <mat-nav-list class="category">
+                  <mat-list-item>
+                    <mat-checkbox [(ngModel)]="most_tag_corr_recap_lifetime[lifetime_topic_corr.topic_id]">{{lifetime_topic_corr.topic_name}}</mat-checkbox>
+                  </mat-list-item>
+                </mat-nav-list>
+              </div>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+    </div>
+    <div *ngIf="employee.goals">
+      <md-card-header>
+        <md-card-title class="cardtitle">Goals</md-card-title>
+      </md-card-header>
+      <div class="start-card" style="width: 75%;">
+          <div fxFlex="23" *ngFor="let topic_goal of checkin_topic_goal |unique:'topic_name'">
+              <mat-nav-list class="category">
+                <mat-list-item>
+                  <mat-checkbox [(ngModel)]="topic_goal_end_date[topic_goal.topic_id]">{{topic_goal.topic_name}}</mat-checkbox>
+                </mat-list-item>               
+              </mat-nav-list>              
+            </div>
+          <br/>
+      </div>
+      <div mat-dialog-content class="p-24 m-0" perfect-scrollbar fxLayout="row">
+          <mat-slide-toggle [(ngModel)]="goalAchieved">Goal Achieved</mat-slide-toggle>  
+      </div>
+      <div class="start-card" style="width: 75%;">
+          <div fxFlex="23" *ngFor="let topic_goal_start of checkin_topic_goal_start |unique:'topic_name'">
+              <mat-nav-list class="category">
+                <mat-list-item>
+                  <mat-checkbox [(ngModel)]="topic_goal_start_date[topic_goal_start.topic_id]">{{topic_goal_start.topic_name}}</mat-checkbox>
+                </mat-list-item>               
+              </mat-nav-list>              
+            </div>
+          <br/>
+      </div>
+    </div>
+    <div *ngIf="employee.tasks">
+      <md-card-header>
+        <md-card-title class="cardtitle">Tasks</md-card-title>
+      </md-card-header>
+      <div class="start-card" style="width: 75%;">
+          <div fxFlex="23" *ngFor="let topic_task of checkin_topic_task |unique:'topic_name'">
+              <mat-nav-list class="category">
+                <mat-list-item>
+                  <mat-checkbox [(ngModel)]="topic_task_end_date[topic_task.topic_id]">{{topic_task.topic_name}}</mat-checkbox>
+                </mat-list-item>                
+              </mat-nav-list>
+            </div>
+          <br/>
+      </div>
+      <div mat-dialog-content class="p-24 m-0" perfect-scrollbar fxLayout="row">
+          <mat-slide-toggle [(ngModel)]="taskComplete">Task Complete</mat-slide-toggle>  
+      </div>
+      <div class="start-card" style="width: 75%;">
+          <div fxFlex="23" *ngFor="let topic_task_start of checkin_topic_task_start |unique:'topic_name'">
+              <mat-nav-list class="category">
+                <mat-list-item>
+                  <mat-checkbox [(ngModel)]="topic_task_start_date[topic_task_start.topic_id]">{{topic_task_start.topic_name}}</mat-checkbox>
+                </mat-list-item>                
+              </mat-nav-list>
+            </div>
+          <br/>
+      </div>
+    </div>
+    <div *ngIf="employee.assessment">
+      <md-card-header>
+        <md-card-title class="cardtitle">Assessment</md-card-title>
+      </md-card-header>
+      <div class="start-card">
+          Employee is currently meeting all individual standards/goals for their position    
+          <mat-radio-group [(ngModel)]="individual_standards">
+            <mat-radio-button style="padding: 29px;" value="1">Yes</mat-radio-button>
+            <mat-radio-button style="padding: 29px;" value="0">No</mat-radio-button>
+          </mat-radio-group> 
+      </div>
+      <div class="start-card">
+          Impact of employee's performance on customers, team and company
+          <textarea matInput placeholder="Comments" matTextareaAutosize matAutosizeMinRows="2" 
+            matAutosizeMaxRows="5" style="border: 1px solid #ccc;" [(ngModel)]="employee_performance">
+          </textarea>
+      </div>
+     <div class="start-card">
+          Based on their performance, employee is ready for additional responsibility 
+          <mat-radio-group [(ngModel)]="additional_responsibility">        
+            <mat-radio-button style="padding: 29px;" value="1">Yes</mat-radio-button>
+            <mat-radio-button style="padding: 29px;" value="0">No</mat-radio-button>
+          </mat-radio-group>
+          <div *ngIf="additional_responsibility==1">
+            complete Growth Plan
+            <textarea matInput placeholder="Comments" matTextareaAutosize matAutosizeMinRows="2" 
+              matAutosizeMaxRows="5" style="border: 1px solid #ccc;" [(ngModel)]="complete_growth_plan">
+            </textarea>
+          </div>
+      </div>
+    </div>
+     <div>
+      <md-card-header>
+        <md-card-title class="cardtitle">Notes</md-card-title>
+      </md-card-header>      
+      <div class="start-card">
+        Manager Input & Expectations
+        <textarea matInput placeholder="Comments" matTextareaAutosize matAutosizeMinRows="2" 
+          matAutosizeMaxRows="5" style="border: 1px solid #ccc;" [(ngModel)]="manager_notes">
+        </textarea>
+      </div>
+      <div class="start-card">
+        Employee Input
+        <textarea matInput placeholder="Comments" matTextareaAutosize matAutosizeMinRows="2" 
+          matAutosizeMaxRows="5" style="border: 1px solid #ccc;" [(ngModel)]="employee_notes">
+        </textarea>
+      </div>
+    </div>
+    <div fxLayout="row">
+      <button mat-raised-button class="save-button" aria-label="SAVE" (click)="backClicked()" style="margin-left: 30%;">Back</button>
+      <button mat-raised-button class="save-button mat-accent" aria-label="SAVE" (click)="recapSubmit()" style="background-color:#8bd94c;">
+        Next
+      </button>      
+    </div>
+  </mat-card>
+</div>
+<app-choose-elements *ngIf="back"></app-choose-elements>
+<!-- <app-recap-confirmation-page *ngIf="recap_confirmation">
+  
+</app-recap-confirmation-page> -->

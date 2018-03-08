@@ -1,0 +1,60 @@
+<div style="width:100%" id="addfranchise">
+  <mat-toolbar mat-dialog-title class="mat-accent m-0 upfront-theme">
+    <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+      <span class="title dialog-title">Add User</span>
+    </div>
+  </mat-toolbar>
+  <div>
+    <form novalidate [formGroup]="newUser" fxFlex>
+      <div formArrayName="itemRows">
+        <div *ngFor="let itemrow of newUser.controls.itemRows.controls; let i=index" [formGroupName]="i">
+          <div mat-dialog-content class="p-24 m-0" perfect-scrollbar fxLayout="row">
+            <mat-input-container fxFlex="50">
+              <input matInput placeholder="Name" formControlName="first_name" n>
+              <mat-error *ngIf="formErrors.first_name.required">
+                Required
+              </mat-error>
+            </mat-input-container>
+            <mat-input-container class="spacebtwn" fxFlex="100">
+              <input matInput placeholder="Designation" formControlName="designation">
+            </mat-input-container>
+            <mat-input-container class="spacebtwn" fxFlex="100">
+              <input matInput placeholder="Email" type="email" formControlName="email">
+              <mat-error *ngIf="formErrors.email.required">
+                Required
+              </mat-error>
+             <!--  <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+                Please enter a valid email address
+              </mat-error> -->
+            </mat-input-container>
+            <mat-form-field class="spacebtwn">
+              <mat-select style="width: 211px" placeholder="Location" formControlName="location">
+                <mat-option *ngFor="let loc of rows2" value={{loc.id}}> {{loc.store_loc}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+              <div class="pl-8" fxLayout="row" fxLayoutAlign="space-between center">
+                <button mat-icon-button *ngIf="newUser.controls.itemRows.controls.length > 1" (click)="deleteRow(i)" class="btn btn-danger" class="cancel-button" aria-label="cancel">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div layout="column">
+        <button (click)="$event.preventDefault();addNewRow()" class="mat-raised mat-primary add_more">
+          <mat-icon mat-font-icon="icon-plus " class="s16 "></mat-icon>ADD MORE
+        </button>
+      </div>
+      <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
+        <div>
+          <button mat-raised-button class="save-button mat-accent" aria-label="SAVE" (click)="createUser()" [disabled]="newUser.invalid">
+            Create
+          </button>
+          <button mat-button (click)="$event.preventDefault();dialogRef.close(false)">Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

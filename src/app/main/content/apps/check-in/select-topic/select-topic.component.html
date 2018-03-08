@@ -1,0 +1,145 @@
+<div>
+  <mat-card *ngIf="!show && !back && load" id="check-in-sec">
+
+
+    <section class="check-in-content">
+      <!-- <h3>Employee Name: {{employee.name}}  Check-in Type: {{selected_type.name}}
+      Check In For: {{employee.date | date: 'MM/dd/yy'}}
+      </h3>       -->
+      <h3>Add topics for each conversation <span>{{ employee.name }} {{employee.date | date: 'MM/dd/yy'}}</span></h3>
+    </section>
+
+    <!--first expansion panel -->
+
+    <div fxLayout="row" class="table_sec" fxLayoutWrap>
+
+
+      <div fxFlex.gt-sm="50" fxFlex.xs="100" class="table_division {{selectedCheckinType[0].class}}">
+    <mat-accordion>
+
+      <mat-expansion-panel
+        [expanded]="step === 0" (opened)="setStep(0)" class="topic_outer" hideToggle="true">
+
+        <mat-expansion-panel-header class="table_head">
+            <mat-panel-title *ngIf="selectedCheckinType != undefined">
+                <span class="up_arrow"><i class="material-icons">keyboard_arrow_down</i></span>
+                <!-- <i class="material-icons">keyboard_arrow_down</i> -->
+             <span class="topic_head"> {{selectedCheckinType[0].name}} </span>
+            </mat-panel-title>
+
+
+        </mat-expansion-panel-header>
+
+         <div fxLayout="row" class="table_content" fxLayoutWrap>
+           <div fxFlex="100" *ngFor="let topic of topic_data">
+             <div fxLayout="row" fxLayoutWrap>
+                <label>
+            <div fxFlex="100" class="table_content_details" >
+
+
+                   <span class="topic_name"> {{topic.topic_name}}</span>
+                  <mat-checkbox class="table_checkbox" (change)="selectFirstTopic(topic)"
+                    [(ngModel)]="first_topic_category[topic.id]"
+                  name="{{topic.topic_name}}"></mat-checkbox>
+
+              </div>
+            </label>
+            </div>
+          </div>
+        </div>
+
+         <!--  <mat-action-row>
+            <button mat-button  [disabled]="firsttopicsSelectNumber" (click)="nextStep(selectedCheckinType[0])"
+               class="save-button mat-accent">Save</button>
+          </mat-action-row> -->
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+    <!--ends here ---------------------->
+
+
+
+    <!-- expansion panel -->
+    <div *ngIf ="showSecondPanel" fxFlex.xs="100" fxFlex.gt-sm="50" class="table_division {{selectedCheckinType[1].class}}">
+
+
+
+   <!-- new -->
+
+
+   <!-- new -->
+
+
+
+
+
+      <mat-accordion >
+
+      <mat-expansion-panel class="topic_outer"
+        [expanded]="step === 1" (opened)="setStep(1)" hideToggle="true">
+
+
+       <mat-expansion-panel-header class="table_head ">
+            <mat-panel-title>
+              <span class="up_arrow"><i class="material-icons">keyboard_arrow_down</i></span>
+
+                <span class="topic_head">{{selectedCheckinType[1].name}} </span>
+            </mat-panel-title>
+
+
+        </mat-expansion-panel-header>
+
+
+
+
+<!-- new -->
+<div fxLayout="row" class="table_content" fxLayoutWrap>
+    <div fxFlex="100" *ngFor="let topic of topic_data">
+      <div fxLayout="row" fxLayoutWrap>
+         <label>
+     <div fxFlex="100" class="table_content_details" >
+
+
+            <span class="topic_name"> {{topic.topic_name}}</span>
+           <mat-checkbox class="table_checkbox"  (change)="selectSecondTopic(topic)"
+           [(ngModel)]="second_topic_category[topic.id]" name="{{topic.topic_name}}"></mat-checkbox>
+
+       </div>
+     </label>
+     </div>
+   </div>
+ </div>
+
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+
+    </div>
+
+      <!-- endds here =========================-->
+
+        <div  class="btn_sec" fxLayout="row">
+
+          <button
+                mat-raised-button class="back_btn" aria-label="SAVE"
+                (click)="$event.preventDefault();backClicked()">Back</button>
+
+          <button mat-raised-button [ngClass]="{'btn-active': submitButtonFlag == false }"  class="next_btn" aria-label="SAVE"
+                (click)="$event.preventDefault();createCheckin()"
+                 [disabled]="submitButtonFlag">Next</button>
+        </div>
+        <!-- <button mat-raised-button class="save-button mat-accent" aria-label="SAVE"
+          (click)="getPreviousCheckin()">
+          Previous CheckIn
+        </button> -->
+  </mat-card>
+
+  <app-confirmation-page *ngIf="show && !back" [selectedCheckinType]="selectedCheckinType" [selectedFirstTopicDetails]="selectedFirstTopicDetails"
+      [selectedSecondTopicDetails]="selectedSecondTopicDetails"  [employee]="employee" [selected_type]="selected_type"
+      [topic_main]="selectedTopicId" [informSelectedEmployee]="informSelectedEmployee"
+      [back_enable]="topicsSelectNumber" [insertCheckinDetails] = "insertCheckinDetails">
+  </app-confirmation-page>
+  <app-select-checkintype *ngIf="back" [employee]="employee" [informSelectedEmployee]="informSelectedEmployee" [selectedCheckinTypes] = "selectedCheckinType" [selected_type]="selected_type" [topic_back]="topic_back" [back_enable]="topicsSelectNumber">
+  </app-select-checkintype>
+  <!-- <app-start-checkin *ngIf="back && employeeLength > 1" [employee]="employee"> </app-start-checkin> -->
+</div>
